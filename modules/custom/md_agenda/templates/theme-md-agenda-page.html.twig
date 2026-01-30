@@ -1,0 +1,78 @@
+<div class="row agenda ">
+<div  class="col-12 ">
+	  <div  class="field field--name-title-text field--type-string ">{% trans %}Agenda{% endtrans %}</div>
+	  </div>
+	  <div  class="col-12 ">
+     {% set lang = cur_lang %}
+	 <div class="arlo arlo-loaded" style="position: relative;">
+	<ul class="arlo-event-list" style="position: relative;" min-width="551px 769px 1000px 1250px">
+	
+	{% for node in nodes %}
+	
+{% set MM = node.field_date.value|date('U')|date("M") %}
+		<li class="arlo-event-listitem" id="view101">
+    <div class="arlo-listitem arlo-clearfix">
+        <div class="arlo-date arlo-font-special">
+            <div class="arlo-date-container arlo-text-color-dark">
+                <div class="arlo-start-month arlo-bg-color-primary">
+                    {{ MM|trans }}
+                </div>
+                <div class="arlo-start-date arlo-text-color-lightest">
+                    {{ node.field_date.value|date('U')|date("d") }}
+                </div>
+            </div>
+        </div>
+
+        <div class="arlo-title arlo-font-special">
+            <div class="arlo-name arlo-text-color-dark arlo-h2">
+                <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+				{% if node.hastranslation(lang) %}
+    {{ node.translation(lang).label }}
+    {% else %}
+    {{ 'No translation'|t }}
+    {% endif %}</a>
+            </div>
+
+            
+        </div>
+
+        <div class="arlo-detail arlo-font-primary">
+            
+                
+
+            
+
+            
+
+            <div class="arlo-summary arlo-text-color-light">
+               {% if node.hastranslation(lang) %}
+    {{ node.translation(lang).body.0.value|striptags }}
+    {% else %}
+    {{ 'No translation'|t }}
+    {% endif %}
+            </div>
+
+            <div class="arlo-offers">
+                <div class="arlo-offer-container "><span class="arlo-offer-amount">{% if node.hastranslation(lang) %}
+    {{ node.translation(lang).field_lieu.0.value }}
+    {% else %}
+    {{ 'No translation'|t }}
+    {% endif %}</span>  </div>
+            </div>
+
+            
+            <span class="arlo-more-info-button">
+                <a href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="arlo-bg-color-primary">{{ 'More Information'|t }}</a>
+            </span>
+
+            
+
+            
+        </div>
+        
+    </div>
+</li>
+    {% endfor %}
+	</ul></div>
+</div>
+</div>

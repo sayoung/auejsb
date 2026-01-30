@@ -1,0 +1,54 @@
+<?php
+
+function md_services_schema() {
+  $schema['md_services'] = array(
+    'fields' => array(
+      'id'=>array(
+        'type'=>'serial',
+        'not null' => TRUE,
+      ),
+      'service_title'=>array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => false,
+      ),
+	  'service_link_title_1'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'service_link_title_2'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'service_link_title_3'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'service_link_1'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'service_link_2'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'service_link_3'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+	  'bg_service'=>array(
+        'type' => 'varchar',
+        'length' => 500,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}

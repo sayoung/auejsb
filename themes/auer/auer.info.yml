@@ -1,0 +1,43 @@
+name: auer
+type: theme
+base theme: classy
+description: 'ce project cree pour notre client Agence Urbaine d Errachidia-Midelt'
+package: Core
+core_version_requirement: ^8 || ^9
+# version: VERSION
+# core: 8.x
+libraries:
+  - auer/global-styling
+
+regions:
+  social: 'Social'
+  search: 'Search'
+  langue: 'Langue'
+  menu: 'Menu'
+  slide: 'Slide'
+  newshp: 'News HP'
+  map: Map
+  video: 'Video'
+  agenda: Agenda
+  services: 'Services'
+  services_interne: 'services interne'
+  content: Content
+  sidebar: Sidebar
+  adresse: Adresse
+  newsletter: Newsletter
+  menu_footer: 'menu footer'
+  md_bloc: 'les 6 bloc'
+  md_block_contact: 'md_block_contact'
+  another: 'another'
+  panier: 'panier'
+  count: 'count'
+  publication: publication
+  maroc: maroc
+  breadcrumbs: breadcrumbs
+  services_mobile: services_mobile
+  help: help
+
+# Information added by Drupal.org packaging script on 2019-07-04
+version: '8.7.4'
+core: '8.x'
+project: 'drupal'

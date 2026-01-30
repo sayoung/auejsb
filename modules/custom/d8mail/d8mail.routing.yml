@@ -1,0 +1,7 @@
+d8mail.admin_instruction:
+  path: '/admin/config/instruction/configuration'
+  defaults:
+    _form: '\Drupal\d8mail\Form\InsConfigForm'
+    _title: 'Config Instruction'
+  requirements:
+    _permission: 'administer site configuration'

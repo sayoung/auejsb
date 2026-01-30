@@ -1,0 +1,10 @@
+md-menu-hp:
+  version: 1.x
+  css:
+    theme:
+      assets/css/styles.css: {}
+  js:
+    assets/js/ace-responsive-menu.js: {}
+    assets/js/index.js: {}
+  dependencies:
+    - core/jquery

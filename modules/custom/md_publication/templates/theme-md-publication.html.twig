@@ -1,0 +1,23 @@
+<div class="publications">
+<p class="pub-head"> Publications</p>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+   {% set j = 0 %}
+      {% for slide in publication %}
+	<div class="carousel-item{% if j == 0 %} active{% endif %}">
+      <img class="d-block w-90" src="{{ file_url(slide.field_image_slider.entity.fileuri) }}"
+        alt="First slide">
+    </div>
+	 {% set j = j + 1 %}
+      {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>

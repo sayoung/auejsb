@@ -1,0 +1,542 @@
+<?php
+
+use Drupal\md_new_prestation\Helper\Helper;
+use Drupal\md_new_prestation\Eprestation\Eprestation;
+use Drupal\commerce_product\Entity\ProductInterface;
+
+use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_price\Price;
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\file\Entity\File;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\webform\Entity\WebformSubmission;
+/**
+ * Implements hook_ENTITY_TYPE_presave() for Commerce Product.
+ */
+ 
+
+
+function md_new_prestation_commerce_product_presave(ProductInterface $product) {
+  // Ensure we are working with the correct product bundle.
+  if ($product->bundle() === 'instruction') {
+    
+
+        
+    // Fetch field values safely
+    $email_values = $product->get('field_mail')->getValue();
+    $commune = $product->get('field_commune')->getValue();
+    $ndeg_dossier = $product->get('field_ndeg_de_dossier')->getValue();
+    $situation_projet = $product->get('field_situation_du_projet')->getValue();
+    $province = $product->get('field_collectivite_territoriale_')->getValue();
+    $nom_maitre_ouvrage = $product->get('field_nom_du_petitionnaire')->getValue();
+    $cin_maitre_ouvrage = $product->get('field_cin')->getValue();
+    $nature_projet = $product->get('field_nature_du_projet')->getValue();
+    $supp_apres_modi = $product->get('field_supp_apres_modi')->getValue();
+    $field_type = $product->get('field_type')->getValue();
+    $architecte = $product->get('field_architecte_ou_igt')->getValue();
+    $motif = $product->get('field_motif')->getValue();
+    $field_sid = $product->get('field_sid')->getValue();
+    
+    if ($field_type === "Nouveau projet") {
+    $metrage_du_projet = $product->get('field_metrage_du_projet')->getValue();
+    } elseif ($field_type === "Modification") {
+        $metrage_du_projet = $product->get('field_supp_apres_modi')->getValue();
+    }else {
+        $metrage_du_projet = $product->get('field_metrage_du_projet')->getValue();
+    }
+    // Vérification de l'existence des données avant de les utiliser
+    $email_value = !empty($email_values) ? $email_values[0]['value'] : '';
+    $commune_value = !empty($commune) ? $commune[0]['value'] : '';
+    $ndeg_dossier_value = !empty($ndeg_dossier) ? $ndeg_dossier[0]['value'] : '';
+    $province_value = !empty($province) ? $province[0]['value'] : '';
+    $nom_maitre_ouvrage_value = !empty($nom_maitre_ouvrage) ? $nom_maitre_ouvrage[0]['value'] : '';
+    $nature_projet_value = !empty($nature_projet) ? $nature_projet[0]['value'] : '';
+    $metrage_du_projet_value = !empty($metrage_du_projet) ? $metrage_du_projet[0]['value'] : '';
+    $architecte_value = !empty($architecte) ? $architecte[0]['value'] : '';
+    $motif_value = !empty($motif) ? $motif[0]['value'] : '';
+    $sid_value = !empty($field_sid) ? $field_sid[0]['value'] : '';
+
+    
+    // ✅ Extract the first value from the list (if exists)
+    $etat_values = $product->get('field_etat')->getValue();
+    $etat = !empty($etat_values[0]['value']) ? $etat_values[0]['value'] : NULL;
+
+    // ✅ Get file URI safely
+    $file_declaration = NULL;
+    if ($product->hasField('field_declaration_de_superficier') && !$product->get('field_declaration_de_superficier')->isEmpty()) {
+        $file_entity = $product->get('field_declaration_de_superficier')->entity;
+        if ($file_entity) {
+            $file_declaration = file_create_url($file_entity->getFileUri());
+        }
+    }
+    
+    $file_facturation = NULL;
+    if ($product->hasField('field_daf_facture') && !$product->get('field_daf_facture')->isEmpty()) {
+        $file_entity = $product->get('field_daf_facture')->entity;
+        
+        if ($file_entity) {
+            $file_facturation = file_create_url($file_entity->getFileUri());
+        }
+    }
+
+    // ✅ Check if email was already sent
+    $ismailed = $product->get('field_is_mailed')->getValue();
+    $is_sms_sent = $product->get('field_is_sms')->getValue();
+    
+    // ✅ Send SMS if not sent before
+    if ($product->hasField('field_is_sms') && $product->hasField('field_telephone')) {
+      $phone_number = $product->get('field_telephone')->getValue();
+      if (empty($is_sms_sent[0]['value']) && !empty($phone_number[0]['value'])) {
+        $product->set('field_is_sms', 1);
+       // Helper::sendSMS($phone_number[0]['value']);
+      }
+    }
+    
+if ($product->hasField('field_etat') && $product->hasField('field_date_validation')) {
+    $etat = $product->get('field_etat')->value;
+    $date_validation = $product->get('field_date_validation')->value;
+
+    if ($etat === 'valider' && empty($date_validation)) {
+        $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        // Récupérer la date système actuelle sans heure (Y-m-d)
+        $today = (new \DateTime())->format('Y-m-d');
+
+        // Enregistrer la date dans field_date_validation
+        $product->set('field_date_validation', $today);
+
+        if ($current_user) {
+            $username = $current_user->getAccountName();
+            $product->set('field_valider_par', $username);
+        }
+
+        // ===== GENERATE AUTO-INCREMENT AUTORISATION NUMBER =====
+        $current_year = date('Y');
+        
+        $query = \Drupal::entityTypeManager()
+          ->getStorage('commerce_product')
+          ->getQuery()
+          ->accessCheck(FALSE)
+          ->condition('type', 'instruction')
+          ->condition('field_autorisation_nbr', '%/' . $current_year, 'LIKE');
+        
+        $ids = $query->execute();
+        $last_number = 0;
+        
+        if (!empty($ids)) {
+          $products = Product::loadMultiple($ids);
+          
+          foreach ($products as $existing_product) {
+            $value = $existing_product->get('field_autorisation_nbr')->value;
+            
+            if (preg_match('/^(\d+)\/' . $current_year . '$/', $value, $matches)) {
+              $number = (int) $matches[1];
+              if ($number > $last_number) {
+                $last_number = $number;
+              }
+            }
+          }
+        }
+        
+        $new_autorisation_nbr = ($last_number + 1) . '/' . $current_year;
+        
+        // Set the new autorisation number
+        $product->set('field_autorisation_nbr', $new_autorisation_nbr);
+        
+        // Log the generated number
+        \Drupal::logger('md_new_prestation')->notice('Generated autorisation number @num for product @id when validated', [
+          '@num' => $new_autorisation_nbr,
+          '@id' => $product->id()
+        ]);
+        // ===== END AUTO-INCREMENT =====
+    }
+}
+
+
+
+    // ✅ Send main email only once
+     if (empty($ismailed[0]['value'])) {
+        $product->set('field_is_mailed', 1);
+        Helper::sendMailFirst(
+            $email_value,
+            $commune_value,
+            $ndeg_dossier_value,
+            $province_value,
+            $nom_maitre_ouvrage_value,
+            $nature_projet_value,
+            $metrage_du_projet_value,
+            $architecte_value
+        );
+                
+    } 
+    
+
+
+    $restricted_states_recu_email = ['valider', 'valider'];
+    if (!empty($file_declaration) && in_array($etat, $restricted_states_recu_email)) {
+        Helper::sendMailDeclaration(
+            $email_value,
+            $commune_value,
+            $ndeg_dossier_value,
+            $province_value,
+            $nom_maitre_ouvrage_value,
+            $nature_projet_value,
+            $metrage_du_projet_value,
+            $architecte_value,
+            $product->id()
+        );
+    } 
+    
+    
+    $restricted_states_fact_email = ['facturation'];
+    if (!empty($file_facturation)) {
+        Helper::sendMailFacturation(
+            $email_value,
+            $commune_value,
+            $ndeg_dossier_value,
+            $province_value,
+            $nom_maitre_ouvrage_value,
+            $nature_projet_value,
+            $metrage_du_projet_value,
+            $architecte_value,
+            $product->id()
+        );
+    } 
+    
+        $restricted_states_rej_email = ['rejeter', 'rejeter'];
+    if (in_array($etat, $restricted_states_rej_email)) {
+        Helper::delete_webform_submission_by_field_sid($sid_value) ;
+        Helper::sendMailRejet(
+            $email_value,
+            $commune_value,
+            $ndeg_dossier_value,
+            $province_value,
+            $nom_maitre_ouvrage_value,
+            $nature_projet_value,
+            $metrage_du_projet_value,
+            $architecte_value,
+            $product->id(),
+            $motif_value
+        );
+    } 
+
+    // ✅ If "field_recu_justificatif_de_paiem" exists, update status
+    if ($product->hasField('field_recu_justificatif_de_paiem')) {
+        $field_recu = $product->get('field_recu_justificatif_de_paiem')->entity;
+        if (!empty($field_recu)) {
+            $product->set('field_etat', "facturation");
+            \Drupal::logger('md_new_prestation')->notice("field_etat set to 'facturation' due to missing justificatif de paiement.");
+        }
+    }
+        // ✅ If "field_date_de_facture" exists and is not empty, update status
+if ($product->hasField('field_date_de_facture')) {
+    $field_date = $product->get('field_date_de_facture')->value;
+    if (!empty($field_date)) {
+        $product->set('field_etat', "facturationavecdate");
+        \Drupal::logger('md_new_prestation')->notice("field_etat set to 'facturationavecdate' due to presence of field_date_de_facture.");
+    }
+}
+    
+    // ✅ If "field_daf_facture exists, update status
+    if ($product->hasField('field_daf_facture')) {
+        $field_facture = $product->get('field_daf_facture')->entity;
+        if (!empty($field_facture)) {
+            $product->set('field_etat', "archive");
+            \Drupal::logger('md_new_prestation')->notice("field_etat set to 'archiver' due to missing justificatif de paiement.");
+        }
+    }
+
+    // ✅ Send final notification email if required fields exist
+    if ($product->hasField('field_votre_e_mail') && $product->hasField('field_code_de_suivi')) {
+        $email_final_values = $product->get('field_votre_e_mail')->getValue();
+        $tracking_code_values = $product->get('field_code_de_suivi')->getValue();
+
+        if (!empty($email_final_values[0]['value']) && !empty($tracking_code_values[0]['value'])) {
+            Helper::sendMailFinalTechnicien( $email_final_values[0]['value'],$tracking_code_values[0]['value'],'Nouvelle demande de prestation');
+            
+        }
+    }
+  }
+}
+
+
+
+/**
+ * Implements hook_form_alter() to disable "Add to Cart" for the "prestatio" role.
+ */
+function md_new_prestation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $user = \Drupal::currentUser();
+
+  // Ensure this only applies to the Add to Cart form.
+  if (strpos($form_id, 'commerce_cart_add_to_cart_form') !== FALSE) {
+    // Check if the user has the "prestatio" role.
+    if (in_array('e_prestation', $user->getRoles())) {
+      // Remove the Add to Cart button.
+      if (isset($form['actions']['submit'])) {
+        unset($form['actions']['submit']);
+      }
+    }
+  }
+   
+    // Ensure this only runs on the edit form of your entity type.
+  if ($form_id === 'commerce_product_instruction_edit_form') { // Replace with the correct form ID
+    
+    // Get the entity being edited.
+    $entity = $form_state->getFormObject()->getEntity();
+    
+    // Check if the entity has the field 'field_etat'.
+    if ($entity->hasField('field_etat')) {
+      // Get the value of field_etat.
+      $etat_values = $entity->get('field_etat')->getValue();
+      
+      // Extract the first value if it exists.
+    //  $etat = !empty($etat_values) ? $etat_values[0]['value'] : '';
+      $etat = !empty($etat_values) ? strtolower($etat_values[0]['value']) : ''; // Normalize case
+      
+      // Add AJAX to field_etat to trigger form update on selection.
+     
+            if (isset($form['field_etat']['widget'])) {
+              $form['field_etat']['widget']['#ajax'] = [
+                'callback' => 'md_new_prestation_ajax_callback',
+                'wrapper'  => 'motif-wrapper', // Must match the wrapper ID
+                'event'    => 'change', // Works for select lists
+                'progress' => ['type' => 'throbber'],
+              ];
+              \Drupal::logger('custom_debug')->notice('AJAX added to field_etat widget.');
+            }
+
+            // ✅ Wrap field_motif for AJAX updates
+             if (isset($form['field_motif'])) {
+              $form['field_motif']['#prefix'] = '<div id="motif-wrapper">';
+              $form['field_motif']['#suffix'] = '</div>';
+            }
+
+      // Define restricted states.
+      $restricted_states_recu = ['en_cours', 'en cours', 'facturation','facturationavecdate'];
+       $restricted_states_declaration = ['valider', 'validé','rejeter', 'facturation','facturationavecdate']; 
+       $restricted_states_autorisa = ['valider', 'validé','archive', 'facturation','facturationavecdate'];  
+       $restricted_states_facturation = ['en_cours', 'en cours', 'rejeter'];
+      // Hide the field if the entity is in a restricted state.
+      if (in_array($etat, $restricted_states_recu)) {
+        $form['field_recu_justificatif_de_paiem']['#access'] = FALSE;
+        
+      }
+      if (in_array($etat, $restricted_states_declaration)) {
+        $form['field_declaration_de_superficier']['#access'] = FALSE;
+        
+      }
+      if (in_array($etat, $restricted_states_facturation)) {
+        $form['field_daf_facture']['#access'] = FALSE;
+        
+      }
+      
+      
+      $restricted_states_rej = ['rejeter'];
+     if (in_array($etat, $restricted_states_rej)) {
+        $form['field_motif']['widget'][0]['value']['#required'] = TRUE;
+        $form['field_type']['#access'] = FALSE;
+        }
+       // Get current user.
+        $current_user = \Drupal::currentUser();
+
+      // Get all roles.
+      $roles = $current_user->getRoles();
+    if (in_array('e_prestation', $roles) ) {
+      // \Drupal::logger('role_ms')->notice('User roles: @roles', ['@roles' => implode(', ', $roles)]);
+      // Limite les options du champ "État"
+      $form['field_etat']['widget']['#options'] = [
+        'valider' => 'valider',
+        'rejeter' => 'rejeter',
+      ];
+    }else {
+        $form['field_etat']['widget']['#options'] = [
+        'en_cours' => 'en cours',
+        'valider' => 'valider',
+        'rejeter' => 'rejeter',
+        'facturation' => 'facturation',
+        'facturationavecdate' => 'facturationavecdate',
+        'archive' => 'archive',
+      ];
+    }
+    if (in_array('client', $user->getRoles())) {
+      // Limite les options du champ "État"
+     if (in_array($etat, $restricted_states_rej)) {
+        $form['field_type']['#access'] = TRUE;
+        $form['field_metrage_du_projet']['#access'] = TRUE;
+        $form['field_architecte_ou_igt']['#access'] = TRUE;
+        $form['field_architecte_ou_igt']['#access'] = TRUE;
+        
+        }
+       
+    }
+        
+    }
+  }
+  
+}
+
+
+/**
+ * AJAX callback: Updates field_motif based on field_etat.
+ */
+function md_new_prestation_ajax_callback(array &$form, FormStateInterface $form_state) {
+  $value = $form_state->getValue('field_etat')[0]['value'] ?? NULL;
+ //\Drupal::logger('custom_debug')->notice('Full field_etat value 00 : ' . $value );
+  // Example: Require field_motif only if "rejeter" is selected
+  if (isset($form['field_motif']['widget'][0]['value'])) {
+  //  $value = strtolower(trim($form_state->getValue('field_etat')[0]['value'] ?? ''));
+     \Drupal::logger('custom_debug')->notice('Full field_etat value 01 : ' . $value );
+        if ($value === 'rejeter') {
+          $form['field_motif']['widget'][0]['value']['#required'] = TRUE;
+          
+     //     \Drupal::logger('custom_debug')->notice('Full field_etat value 02: ' . $value );
+        }
+        
+  }
+
+  return $form['field_motif'];
+}
+
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function md_new_prestation_commerce_product_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  // Ensure this is a product entity and the operation is "update".
+  if ($entity->getEntityTypeId() === 'commerce_product' && $operation === 'update') {
+    
+    // Check if the user has the "client" role.
+    if (in_array('client', $account->getRoles())) {
+
+      // Ensure the product is of type "inst".
+      if ($entity->bundle() === 'instruction') {
+
+        // Get the value of field_etat.
+        $etat_values = $entity->get('field_etat')->getValue();
+        
+        // Extract the first value if it exists.
+        $etat = !empty($etat_values) ? $etat_values[0]['value'] : '';
+
+        // Define allowed and restricted states.
+        $modifiable_states = ['en_cours', 'en cours','valider', 'validé'];
+        $restricted_states = ['facturation','archiver','rejeter','facturationavecdate'];
+
+        // If the field_etat is in restricted states, deny access.
+        
+        if (in_array($etat, $restricted_states)) {
+          return AccessResult::forbidden();
+        } 
+      }
+    }
+  }
+  // If none of the conditions match, allow access.
+  return AccessResult::neutral();
+}
+
+
+
+/**
+ * Implements hook_entity_presave().
+ */
+function md_new_prestation_entity_presave(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'commerce_product' && $entity->bundle() === 'instruction') {
+
+    // Empêcher ajout de reçu sans déclaration
+    $file_declaration = $entity->get('field_declaration_de_superficier')->getValue();
+    $file_recu = $entity->get('field_recu_justificatif_de_paiem')->getValue();
+
+    if (empty($file_declaration) && !empty($file_recu)) {
+      throw new \Drupal\Core\Entity\EntityStorageException("Vous ne pouvez pas enregistrer un reçu sans fichier de déclaration.");
+    }
+
+    // Générer numéro de facture si vide et date présente
+    if ($entity->get('field_ndeg_facture')->isEmpty() && !$entity->get('field_date_de_facture')->isEmpty()) {
+
+      $date_facture = $entity->get('field_date_de_facture')->value;
+      $year = date('Y', strtotime($date_facture));
+
+      $query = \Drupal::entityQuery('commerce_product')
+        ->condition('type', 'instruction')
+        ->exists('field_ndeg_facture')
+        ->condition('field_date_de_facture.value', "{$year}-01-01", '>=')
+        ->condition('field_date_de_facture.value', "{$year}-12-31", '<=')
+        ->sort('field_ndeg_facture', 'DESC')
+        ->range(0, 1);
+
+      $ids = $query->execute();
+
+      $last_number = 0;
+      if (!empty($ids)) {
+        $last_id = reset($ids);
+        $last_product = \Drupal::entityTypeManager()->getStorage('commerce_product')->load($last_id);
+        $last_number = (int) $last_product->get('field_ndeg_facture')->value;
+      }
+
+      $entity->set('field_ndeg_facture', $last_number + 1); 
+    }
+  }
+}
+
+
+
+
+
+
+/**
+ * Implements hook_mail().
+ */
+function md_new_prestation_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+   $config = \Drupal::config('notemail.settings');
+   $ccmail = $config->get('emailcci');
+   $cci_echange = "ahmedazzeddine@auejsb.ma";
+
+  switch ($key) {
+    case 'create_product':
+      $message['from'] =  "noreply@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      $message['body'][] = $params['message'];
+	//  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $ccmail;  
+      break;
+    case 'rejet_product':
+      $message['from'] =  "noreply@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      $message['body'][] = $params['message'];
+	//  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $ccmail;  
+      break;
+    case 'facturation_product':
+      $message['from'] =  "noreply@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      $message['body'][] = $params['message'];
+	//  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $ccmail;  
+      break;
+  }
+}

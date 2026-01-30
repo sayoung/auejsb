@@ -1,0 +1,5 @@
+name: autar slider Homepage
+type: module
+description: Slider.
+core: 8.x
+package: Custom

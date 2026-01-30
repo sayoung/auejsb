@@ -1,0 +1,5 @@
+name: appel offre Homepage
+type: module
+description: appel offre Homepage.
+core: 8.x
+package: Custom

@@ -1,0 +1,5 @@
+name: notemail
+type: module
+description: send an email programmatically after note paiement.
+core: 8.x
+package: Custom

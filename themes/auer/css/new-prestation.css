@@ -1,0 +1,119 @@
+30#instruction .field--type-string .field__label ,#instruction  .field--name-price .field__label ,
+#instruction  .field--name-field-date-commission .field__label , 
+#instruction  .field--name-field-date-commission .field__label ,
+#instruction  .field--type-list-string .field__label,
+#instruction .field--type-boolean .field__label,
+#instruction  .field--type-file .field__label {
+	width: 30% !important;
+    float: left !important;
+	text-transform:capitalize;
+	display: inline-block;
+max-width: 100%;
+margin-bottom: 5px;
+color: #4B52A2 !important;
+font-weight: bold;
+}
+#instruction .field--type-string , 
+#instruction .field--name-price , 
+#instruction .field--type-list-string , 
+#instruction .field--name-field-date-commission ,
+#instruction .field--type-file,
+#instruction .field--type-boolean {
+float: left;
+width: 100%;
+padding-bottom: 10px;
+}
+#comptableprsta .field--type-datetime .label {
+	width: 30% !important;
+    float: left !important;
+	text-transform:capitalize;
+	display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#webform-submission-instruction-add-form .webform-button--previous {width:200px;float:left;}
+#webform-submission-instruction-add-form .webform-button--submit {
+   float: right;
+width: 200px;
+background: #4285f4 !important;
+color: white;
+}
+.red-co {color:red;}
+#webform-submission-instruction-add-form .webform-actions {max-width: 443px;
+float: right;}
+#views-exposed-form-telecharger-page-1 {display:none;}
+.telechargement .views-field-webform-submission-value-1 a {
+font-size: 16px;
+color: #fff !important;
+background-color: #4285f4 !important;
+width: auto;
+cursor: pointer;
+line-height: 31px;
+padding: 5px 23px;
+float: left;
+text-transform: unset;
+border-radius: 20px;
+letter-spacing: 1px;
+margin-top: 13px;
+-webkit-transition: all .3s ease-in-out;
+-moz-transition: all .3s ease-in-out;
+transition: all .3s ease-in-out;
+}
+.telechargement .views-field-webform-submission-value-2 a{
+    
+    font-size: 16px;
+color: #fff !important;
+background-color: #4285f4 !important;
+width: auto;
+cursor: pointer;
+line-height: 31px;
+padding: 5px 23px;
+float: left;
+text-transform: unset;
+border-radius: 20px;
+letter-spacing: 1px;
+margin-top: 13px;
+-webkit-transition: all .3s ease-in-out;
+-moz-transition: all .3s ease-in-out;
+transition: all .3s ease-in-out;
+} 
+.telechargement .view-content {
+    padding-left:30px;
+}
+.telechargement .views-field-webform-submission-value-1 {
+    float: left;
+    padding-right: 30px;
+}
+.telechargement .views-field-webform-submission-value-2 {
+    float: right;
+}
+#views-exposed-form-rappel-page-1 {
+    display:none;
+}
+.views-field-view-commerce-product a {
+    font-weight:bold;
+    text-transform:uppercase;
+    text-decoration:underline !important;
+}
+.clnt .field--widget-commerce-product-single-variation , .clnt .layout-region.layout-region-product-secondary , .clnt .field--name-title , .clnt .entity-content-form-footer{
+    display:none;
+}
+.edit-actions-delete #edit-actions-delete { display:none;}
+.navigation.menu--client {
+        min-height: auto;
+    display: inline-table;
+}
+#other-presta .field--name-variations , #other-presta .layout-region-product-secondary , #other-presta .form-item-title-0-value , #other-presta .form-item-status-value {
+    display:none; 
+}
+form[id^="views-exposed-form-mes-demande-d-autorisation-de-"] .form-item {
+    width: 200px;
+}
+form[id^="views-exposed-form-mes-demande-d-autorisation-de-"] .form-item label {
+    float: left;
+    max-width: 150px;
+    width: 100% !important;
+    text-align: left;
+}

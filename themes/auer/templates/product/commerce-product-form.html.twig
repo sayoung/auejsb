@@ -1,0 +1,97 @@
+{#
+/**
+ * @file
+ * Two column template for the product add/edit form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+{% set roles = user.getroles(TRUE) %}
+
+
+{% if roles[0] == "technicien_e_prestation" %}
+<div> <h2>Ajouter le Metrage</h2></div>
+<div class="layout-product-form clearfix hide-varia" id="technicien-e-prestation">
+  <div class="layout-region layout-region-product-main">
+    {{ form|without('advanced', 'footer', 'actions') }}
+  </div>
+  <div class="layout-region layout-region-product-secondary">
+    {{ form.advanced }}
+  </div>
+  <div class="layout-region layout-region-product-footer">
+    <div class="layout-region-product-footer__content">
+      {{ form.footer }}
+      {{ form.actions }}
+    </div>
+  </div>
+</div>
+{% elseif roles[0] == "comptable" %} 
+<div> <h2>Ajouter la date de la facture & Mode de paiement </h2></div>
+
+<!-- <p>merci de nous laisser vos coordonnées grâce au formulaire ci-dessous.</p> -->
+<div class="layout-product-form clearfix hide-varia clnt edit-actions-delete" id="comptableprsta">
+  <div class="layout-region layout-region-product-main">
+    {{ form|without('advanced', 'footer', 'actions') }}
+  </div>
+  <div class="layout-region layout-region-product-secondary">
+    {{ form.advanced }}
+  </div>
+  <div class="layout-region layout-region-product-footer">
+    <div class="layout-region-product-footer__content">
+      {{ form.footer }}
+      {{ form.actions }}
+    </div>
+  </div>
+</div>
+{% else %} 
+<div> <h2>{% if roles[0] == "client" %} Ajouter votre Déclaration de superficier {% else %} Validation de la déclaration des surfaces {% endif %} </h2></div>
+<p>Veuillez remplir ces champs.</p>
+<div class="layout-product-form clearfix hide-varia {% if roles[0] == "client" %} clnt{% endif %}" id="other-presta">
+  <div class="layout-region layout-region-product-main">
+    {{ form|without('advanced', 'footer', 'actions') }}
+  </div>
+  <div class="layout-region layout-region-product-secondary">
+    {{ form.advanced }}
+  </div>
+  <div class="layout-region layout-region-product-footer">
+    <div class="layout-region-product-footer__content">
+      {{ form.footer }}
+      {{ form.actions }}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+<div class="modal fade" id="confimartion-popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="text">
+            <p><b>Vous confirmez vos données ?</b></p>
+            <p class="email"></p>
+            <p class="tel"></p>
+			<p class="priceprestation"></p>
+			<p class="sku00"></p>
+			<p class="metrage"></p> 
+			
+          </div>
+          <div class="message">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Modifier</button>
+        <input type="submit" id="confimartion-button" class="btn btn-primary">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,304 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the autar theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+
+function auer_preprocess_product(&$variables) {
+  if (isset($variables['elements']['#product'])) {
+    $product = $variables['elements']['#product'];
+    $variables['field_is_payed'] = $product->get('field_is_payed')->getValue();
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function auer_preprocess_html(&$variables) {
+  // Add information about the number of sidebars.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second';
+  }
+  else {
+    $variables['attributes']['class'][] = 'layout-no-sidebars';
+  }
+
+  if (!empty($variables['page']['featured_top'])) {
+    $variables['attributes']['class'][] = 'has-featured-top';
+  }
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page title templates.
+ */
+function auer_preprocess_page_title(&$variables) {
+  // Since the title and the shortcut link are both block level elements,
+  // positioning them next to each other is much simpler with a wrapper div.
+  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+    // Add a wrapper div using the title_prefix and title_suffix render
+    // elements.
+    $variables['title_prefix']['shortcut_wrapper'] = [
+      '#markup' => '<div class="shortcut-wrapper clearfix">',
+      '#weight' => 100,
+    ];
+    $variables['title_suffix']['shortcut_wrapper'] = [
+      '#markup' => '</div>',
+      '#weight' => -99,
+    ];
+    // Make sure the shortcut link is the first item in title_suffix.
+    $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function auer_preprocess_maintenance_page(&$variables) {
+  // By default, site_name is set to Drupal if no db connection is available
+  // or during site installation. Setting site_name to an empty string makes
+  // the site and update pages look cleaner.
+  // @see template_preprocess_maintenance_page
+  if (!$variables['db_is_active']) {
+    $variables['site_name'] = '';
+  }
+
+  // autar has custom styling for the maintenance page.
+  $variables['#attached']['library'][] = 'autar/maintenance_page';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function auer_preprocess_node(&$variables) {
+  // Remove the "Add new comment" link on teasers or when the comment form is
+  // displayed on the page.
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+ $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+         $variables['cur_language'] = $language;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function auer_preprocess_block(&$variables) {
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+         $variables['cur_language'] = $language;
+}
+function auer_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook == 'commerce_product_form') {
+    $suggestions[] = 'commerce_product_form__instruction';
+  }
+    if ($hook == 'views_view_field') {
+    $suggestions[] = 'views_view_field__pdf';
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function auer_preprocess_menu(&$variables) {
+  $variables['attributes']['class'][] = 'clearfix';
+}
+
+/**
+ * Implements i() for form templates.
+ */
+function auer_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#form_id'] == 'search_block_form') {
+    $suggestions[] = 'form__search_block_form';
+  }
+}
+
+/**
+ * Implements hook_form_alter() to add classes to the search form.
+ */
+function auer_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (in_array($form_id, ['search_block_form', 'search_form'])) {
+    $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
+    if (!isset($form[$key]['submit']['#attributes'])) {
+      $form[$key]['submit']['#attributes'] = new Attribute();
+    }
+    $form[$key]['submit']['#attributes']->addClass('search-form__submit');
+	$form[$key]['submit']['#value']= t('Recherche');
+  }
+}
+function search_block_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form['elements']['actions']['#submit__label'] =  'sub';
+    $form['elements']['actions']['#label'] =  'sub';
+}
+function auer_preprocess_page(&$vars) {
+    $site_config = \Drupal::config('system.site');
+    $vars['site_slogan'] = $site_config->get('slogan');
+    if(isset($vars['node'])) {
+            if ($node = \Drupal::request()->attributes->get('node')) {
+                if ($revision_id = \Drupal::routeMatch()->getParameter('node_revision')) {
+                    if ($node_revision = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($revision_id)) {
+                        $node = $node_revision;
+                    }
+                } else {
+                $vars['title'] = $vars['node']->title->value;
+                }
+            }
+    else{
+       $vars['title'] =$vars['page']['#title'];
+    }
+
+       
+}
+$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+               $vars['cur_language'] = $language;
+}
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function auer_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add content type suggestions.
+  if ($node = \Drupal::request()->attributes->get('node')) {
+  if ($revision_id = \Drupal::routeMatch()->getParameter('node_revision')) {
+      if ($node_revision = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($revision_id)) {
+        $node = $node_revision;
+      }
+    } else {
+    array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
+  }
+}
+}
+
+
+
+function auer_preprocess_breadcrumb(&$variables){
+  $variables['#cache']['max-age'] = 0;
+  $current_path = \Drupal::service('path.current')->getPath();
+$result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+$crumbs = explode("/", $result);
+  $request = \Drupal::request();
+  $title = '';
+  if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+    $title = \Drupal::service('title_resolver')->getTitle($request, $route);
+  }
+
+  if($variables['breadcrumb']){
+     foreach ($variables['breadcrumb'] as $key => &$value) {
+      if($value['text'] == 'Node'){
+        unset($variables['breadcrumb'][$key]);
+      }
+    }
+    
+    if($node = \Drupal::routeMatch()->getParameter('node')){
+    
+        if ($revision_id = \Drupal::routeMatch()->getParameter('node_revision')) {
+      if ($node_revision = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($revision_id)) {
+        $node = $node_revision;
+        $variables['breadcrumb'][] = array(
+          'text' => $crumbs[1]
+        );
+      }
+    }
+      if($node->getType() == 'article'){
+        $variables['breadcrumb'][] = array(
+          'text' => $crumbs[1]
+        );
+      }
+if($node->getType() == 'full_article'){
+        $variables['breadcrumb'][] = array(
+          'text' => $crumbs[1]
+        );
+      }	  
+if($node->getType() == 'full_page'){
+        $variables['breadcrumb'][] = array(
+          'text' => $crumbs[1]
+        );
+      }	  
+	  if($node->getType() == 'md_agenda'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Agenda')
+        );
+      }
+	  if($node->getType() == 'actualites'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Actualités')
+        );
+      }
+	  if($node->getType() == 'appel_d_offre'){
+        $variables['breadcrumb'][] = array(
+          'text' => t("Appel d'offre")
+        );
+      }
+	  if($node->getType() == 'appel_a_candidatures'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Appel à candidatures')
+        );
+      }
+	  if($node->getType() == 'documentations'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Documentations')
+        );
+      }
+	  if($node->getType() == 'eco_presse'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Eco presse')
+        );
+      }
+	  if($node->getType() == 'team'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Les responsables')
+        );
+      }
+	  if($node->getType() == 'patrimoine'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Patrimoine')
+        );
+      }
+	  if($node->getType() == 'reglementation'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('réglementation')
+        );
+      } 
+      if($node->getType() == 'publication'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Publications')
+        );
+      }
+	  if($node->getType() == 'video'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Vidéothèque')
+        );
+      }
+	  if($node->getType() == 'gallery'){
+        $variables['breadcrumb'][] = array(
+          'text' => t('Photothèques')
+        );
+      }
+     
+
+        
+      }
+
+    }
+  }
+
+

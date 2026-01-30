@@ -1,0 +1,9 @@
+appel-offre-hp:
+  version: 1.x
+  css:
+    theme:
+      assets/css/styles.css: {}
+  js:
+    assets/js/script.js: {}
+  dependencies:
+    - core/jquery

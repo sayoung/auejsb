@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *  - {{ kint(product_entity)}}
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }} id="regle-dossier">
+<span>{{user.roles}}</span>
+{% if product.variation_price['#object'] is not null %}
+  <h2>{% trans %}Régler un dossier{% endtrans %}</h2>
+  {% else %}
+  {% if product.field_demande_de_calcul == 1 %}
+  
+  <h2>Details de Votre Dossier</h2>
+  {% else %}
+  
+  <h2>{% trans %}Notre équipe en train de calcule votre dossier{% endtrans %}</h2>
+   {% endif %} 
+  
+  {% endif %}  
+
+ 
+    {% if product.field_num_doss %}
+  {{ product.field_num_doss }}
+  {% endif %}
+   {% if product.field_code_com %}
+  {{ product.field_code_com }}
+  {% endif %}
+  {% if product.field_commission %}
+  {{ product.field_commission }}
+  {% endif %}
+{% if product.field_architecte %}
+  {{ product.field_architecte }}
+  {% endif %}
+  
+ 
+    {% if product.field_consistance %}
+  {{ product.field_consistance }}
+  {% endif %}
+  {% if product.field_avis_aust %}
+  {{ product.field_avis_aust }}
+  {% endif %}
+  {% if product.field_metrage %}
+  {{ product.field_metrage }}
+  {% endif %}
+  {% if product.field_num %}
+  {{ product.field_num }}
+  {% endif %}
+  {% if product.field_votre_e_mail %}
+  {{ product.field_votre_e_mail }}
+  {% endif %}
+
+  
+ {# Check user role before displaying variations (Add to Cart) #}
+  {% if product.variation_price['#object'] is not null %}
+    {% if not 'e_prestation' in user.roles %}
+      {{ product.variations }}
+    {% endif %}
+  {% endif %}  
+
+   
+ 
+</article>

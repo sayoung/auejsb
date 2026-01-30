@@ -1,0 +1,5 @@
+name: autar md services Homepage
+type: module
+description: services.
+core: 8.x
+package: Custom

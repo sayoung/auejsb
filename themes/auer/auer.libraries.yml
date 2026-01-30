@@ -1,0 +1,27 @@
+global-styling:
+  version: VERSION
+  css:
+    layout:
+      css/bootstrap.min.css: {}
+      css/compiled-4.8.8.min.css: {}
+      css/font-awesome.min.css: {}
+      css/plugins.css: {}
+      css/custom.css: {}
+      css/style.css: {}
+      css/styles.css: {}
+      css/vent-doc.css: {}
+      css/contact.css: {}
+      css/note.css: {}
+      css/interne.css: {}
+      css/new-prestation.css: {}
+      css/respensive.css: {}
+
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/plugins.js: {}
+    js/active.js: {}
+    js/scripts.js: {}
+    js/fullpage.js: {}
+    js/script.js: {}
+    js/qrcode.min.js: {}

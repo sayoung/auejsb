@@ -1,0 +1,10 @@
+md_newsletter.display_table_controller_display:
+  title: 'liste des emails'
+  description: 'liste des emails'
+  parent: maps.admin_maps
+  route_name: md_newsletter.display_table_controller_display
+newsletter.admin_synchroniser:
+  title: 'Programmer Infolettre'
+  description: 'liste des emails'
+  parent: maps.admin_maps
+  route_name: newsletter.admin_synchroniser

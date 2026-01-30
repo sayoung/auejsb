@@ -1,0 +1,66 @@
+
+<div id="fnis">
+  <div class="container header">
+      <div class="row">
+        <div class="col-sm-8 logo">
+		
+          <a href="{{ url('<front>') }}"><img src="{{ base_path ~ directory }}/images/logo.png" alt="{{ site_slogan }}"></a>
+          <a href="{{ url('<front>') }}"><h1>{{ site_slogan }} </h1></a>
+        </div>
+        <div class="col-sm-4">
+          {{ page.social }}
+          <div class="search-link">
+            {{ page.search }}
+            <ul>
+              <li><a href="/fnis/user/login" data-drupal-link-system-path="user/login">membre</a></li>
+            </ul>
+            {{ page.langue }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container-fluid slide-wrap">
+      <div class="container">
+        {{ page.menu }}
+      </div>
+      {{ page.slide }}
+    </div>
+    <div class="full-container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col">
+            {{ page.content }}
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+
+
+
+    <div class="container-fluid links">
+
+      <div class="container">
+
+        <div class="row footer-css">
+		{{ page.menu_footer }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+</div>
+<style>
+    
+    .slide-wrap {
+        margin-bottom: 0px !important;
+    }
+    .full-container {
+    background: #f9f9f9;
+    }
+</style>

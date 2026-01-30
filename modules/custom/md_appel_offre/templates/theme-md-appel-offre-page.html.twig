@@ -1,0 +1,16 @@
+<div class="row agenda ">
+     <div class="col-md-12"><h2 class="title-text-article">AGENDA</h2></div>
+    {% for node in nodes %}
+	
+    <div class="col-md-12">
+          <span class="date title-text-article">		  {% set MM = node.field_date.value|date('U')|date("M") %}
+           {{ node.field_date.value|date('U')|date("d") }} {{ MM|trans }} {{ node.field_date.value|date('U')|date("Y") }} - {{ node.field_lieu.0.value }}</span>
+          <h3><a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ node.label }}</a></h3>
+          
+
+		  
+
+         
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,10 @@
+maps.admin_details:
+  title: 'la carte'
+  description: 'Configure custom addrress mail'
+  parent: maps.admin_maps
+  route_name: maps.admin_details
+maps.admin_maps:
+  title: 'auejsb'
+  description: 'e-services'
+  parent: system.admin
+  route_name: maps.admin_maps

@@ -1,0 +1,7 @@
+md_block.admin_block:
+  path: '/admin/config/services/md_block'
+  defaults:
+    _form: '\Drupal\md_block\Form\BlocConfigForm'
+    _title: 'list mail Event'
+  requirements:
+    _permission: 'administer site configuration'

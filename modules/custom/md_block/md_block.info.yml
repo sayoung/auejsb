@@ -1,0 +1,5 @@
+name: auer md block Homepage
+type: module
+description: le block.
+core: 8.x
+package: Custom

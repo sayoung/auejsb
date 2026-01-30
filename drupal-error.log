@@ -1,0 +1,8 @@
+[25-Jun-2025 12:40:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function undefined_function() in /home/auejsb/public_html/force-error-log.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/auejsb/public_html/force-error-log.php on line 8
+[25-Jun-2025 12:40:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function undefined_function() in /home/auejsb/public_html/force-error-log.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/auejsb/public_html/force-error-log.php on line 8

@@ -1,0 +1,25 @@
+<nav class="service-interne">
+  <ul>
+          {% for node in sliders %}
+          
+             {% set fid = node.bg_service_interne  %}
+   <li class="var_nav">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon> 
+        <img src="{{ file_url(get_url_by_fid(fid)) }}">
+      
+        </div>
+        <div class=dsec> 
+        <h3>{{ node.service_title|t }}</h3>
+        <div class=dsec-det> 
+        {% if node.service_link_title_1 %}<a target="_blank" href="{{ node.service_link_1|t }}" ><span>{{ node.service_link_title_1|t }}</span></a>{%  endif %}
+        {% if node.service_link_title_2 %}<a target="_blank" href="{{ node.service_link_2|t }}" ><span>{{ node.service_link_title_2|t }}</span></a>{%  endif %}
+        {% if node.service_link_title_3 %}<a target="_blank" href="{{ node.service_link_3|t }}" ><span>{{ node.service_link_title_3|t }}</span></a>{%  endif %}
+      </div>
+      </div>
+      </div>
+   </li>
+    {% endfor %}
+  </ul>
+</nav>

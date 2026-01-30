@@ -1,0 +1,311 @@
+<body>
+{% if is_front %}
+	<!-- Main wrapper -->
+	<div class="wrapper home-page" id="wrapper">
+
+
+		<!-- Header Area -->
+		<header id="header" class="justify-content-center header header-transparent sticky-header cr-border-bottom"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<div class="full-container d-none d-lg-block">
+			<div class="full-container first-section">
+<div class="row">
+    				<div class="col-3 header-inner justify-content-center">
+    				    
+					<a href="{{ url('<front>') }}" class="logo">
+						<img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}" class="logo-auer">
+					</a>
+					</div>
+<div class="col-8">
+    <div class="row">
+<div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a target="_blank" href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/people/Agence-Urbaine-dElJadida-Sidi-Bennour/61576364939270/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+    <a target="_blank" href="https://auejsb.ma/fr/search/node"><span class="icon"><i class="fa fa-search"> </i></span></a>
+    {{ page.panier }}
+   
+  
+  </div>
+</div>
+<div class="col-12">
+    {{ page.menu }}
+</div>
+</div>
+ 
+</div>
+
+</div>
+				
+			</div>
+			</div>
+			
+						<div class="mobile-menu-wrap d-block d-lg-none">
+				<div class="row">
+				    				 <div class="col-12">
+				<div class="container p-0 m-0">
+					<div class="mobile-menu p-0 m-0 row">
+						<div class="col-8 order-1">
+						    <a href="{{ url('<front>') }}" class="mobile-logo">
+							    <img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="logo">
+						    </a>
+				    	</div>
+					</div>
+				</div>
+			</div>
+				    <div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/AUEJSB/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+    <div class="panier_au" >{{ page.panier }}</div>
+   <div  class="search_au">{{ page.search }}</div>
+  
+  </div>
+</div>
+
+
+			</div>
+			</div>
+		</header>
+		<!--// Header Area -->
+
+</div>
+
+		
+
+<section class="full-container bg">
+    <div id="fullpage" class="fullpage-wrapper">
+        		<!-- Banner Area -->
+
+
+
+
+			<div class="full-container section" id="section0">
+				{{ page.slide }}
+			</div>
+
+
+		<!--// Banner Area -->
+       			<div class="slide-wrap section d-none d-lg-block" id="section1">
+
+                   {{ page.services }}
+		    </div>
+		    <div class="d-block d-lg-none" id="services_mobile">
+		         {{ page.services_mobile }}
+		        </div>
+  
+       <div class="row mx-0 wrap-news justify-content-center section" id="section2">
+
+
+        <div class="col-12 col-xl-12 news" >
+            {{ page.newshp }}
+        </div>
+        </div>
+					<div class="row mx-0 justify-content-center section" id="section3">
+			<div class="row p-0 m-0">
+		<div class="col-md-8  margin-rl pad-lf-ri-0 p-0 m-0">
+		    <div class=" vh-5 p-0 m-0">
+		       	{{ page.publication }} 
+		        	</div>
+		        	<div class="row vh-5 p-0 m-0" id="maroc">
+		        	    <div class="h2maroc col-12">
+		         <h2 class="maroc color-yellow"  style="visibility: hidden;">
+			{% trans %}Résidents Marocains{% endtrans %}</br>
+				{% trans %}  à l'étranger {% endtrans %}
+ </br>N° eco 801 00 00 96 
+				</h2>
+				</div><div class="btnmaroc col-12" style="visibility: hidden;">
+<button class="btn purple-btn" tabindex="-1"><a href="{{ url('<front>') }}/mre" tabindex="-1">{% trans %}en savoir plus{% endtrans %}</a></button>
+		        	</div></div>
+			
+				</div>
+						<div class="col-md-4 margin-rl pad-lf-ri-0">
+						{{ page.agenda }}
+
+			</div>
+						
+			</div>
+						
+			</div>
+         <div class="row mx-0 wrap-news justify-content-center section" id="section4">
+{{ page.count }}
+        <div class="col-12 col-xl-12 news"  id="gb-media-auer">
+            <div class="row">
+                <div class="col-md-6 col-12">
+				<h2 class="desktop-h2">
+				{% trans %}Agence urbaine El Jadida-Sidi Bennour{% endtrans %}
+				</h2>
+				<div class="row">
+				    <div class="col-12">
+				<button class="learn-more" ><a href="{{ url('<front>') }}/galerie-photos">{% trans %}en photos{% endtrans %}</a></button>
+				
+				
+				<button class="learn-more"><a href="{{ url('<front>') }}/videos">{% trans %}en videos{% endtrans %}</a></button>
+				</div>
+				</div>
+				</div>
+				
+				<div class="col-md-6 col-12">
+				<a class="video-popup-trigger" href="https://www.youtube.com/watch?v=Hb_tb54yZeI"><img class="destop-youtube" src="{{ base_path ~ directory }}/images/desktop.png"></a><br>
+
+				</div>
+                 </div>
+        </div>
+
+        
+        </div>
+
+
+  
+				<div class="row mx-0 justify-content-center pad-lf-ri-0 section" id="section5">
+        <div class="row">
+                {{ page.md_block_contact }}
+               
+        </div>
+         
+  </div>
+
+</section>
+		{% else %}
+	<!-- Main wrapper -->
+	<div class="wrapper bg-interne" id="wrapper">
+
+
+		<!-- Header Area -->
+    <header id="header" class="justify-content-center header header-transparent sticky-header cr-border-bottom">
+      <div class="full-container d-none d-lg-block">
+        <div class="full-container first-section">
+<div class="row">
+    				<div class="col-3 header-inner justify-content-center">
+    				    
+					<a href="{{ url('<front>') }}" class="logo">
+						<img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}" class="logo-auer">
+					</a>
+					</div>
+<div class="col-8">
+    <div class="row">
+<div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a target="_blank" href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/AUEJSB/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+    {{ page.panier }}
+   {{ page.search }}
+  </div>
+</div>
+<div class="col-12">
+    {{ page.menu }}
+</div>
+</div>
+ 
+</div>
+
+</div>
+      </div>
+      </div>
+     						<div class="mobile-menu-wrap d-block d-lg-none">
+				<div class="row">
+				    <div class="col-12">
+				<div class="container p-0 m-0">
+					<div class="mobile-menu p-0 m-0 row">
+						<div class="col-8 order-1">
+						    <a href="{{ url('<front>') }}" class="mobile-logo">
+							    <img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="logo">
+						    </a>
+				    	</div>
+					</div>
+				</div>
+			</div>
+				    <div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/AUEJSB/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+    <div class="panier_au" >{{ page.panier }}</div>
+   <div  class="search_au">{{ page.search }}</div>
+  
+  </div>
+</div>
+
+
+			</div>
+			</div>
+    </header>
+		<!--// Header Area -->
+
+				<!-- Banner Area -->
+
+{% set has_breadcrumb = '' %}
+
+	<div class="full-container mob-relative">
+        {% if page.breadcrumbs %}
+	   	{% set has_breadcrumb = ' has-breadcrumb' %}
+			<div class="tt_ff">
+				{{ page.breadcrumbs }}
+			</div>
+		{% endif %}
+      </div>
+
+
+
+		<!--// Banner Area -->
+
+		</div>
+		<div class="full-container bg "  id="interne">
+		<div class="row justify-content-center margin-rl">
+    <div class="col-12 col-xl-3 order-2 order-md-1">
+	          <div class="w-100"  >
+
+
+
+            {{ page.services_interne }}
+          </div>
+
+
+    </div>
+    <div class="col-12 col-xl-9 order-1 order-md-2 " id="interne_content">
+	<div class="w-100">
+      {{ page.content }}
+    </div></div>
+  </div>
+   </div>
+
+			{% endif %}
+			 <div class="space-h"></div>
+	<footer class="footer container-full  slide-wrap">
+
+		<div class="footer-relative">
+            <div class="menu-footer">
+                <div class="menu-bas">
+
+ {{ page.menu_footer }}
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="copyright">
+          {{ site_slogan }}
+        </div>
+
+	</footer>
+</body>

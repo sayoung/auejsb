@@ -1,0 +1,28 @@
+#carousel-example-2 .carousel-inner .carousel-item > div > img {
+    height: 100vh;
+    object-fit: cover;
+}
+.carousel-caption h3 {
+    color: #FFF !important;
+    padding: 20px;
+    font-size: 100%;
+text-shadow: 2px 2px black;
+}
+.carousel-caption {
+    position: absolute;
+    right: 10% !important;
+    top: unset;
+    bottom: 10% !important;
+    left: 5% !important;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #FFF;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: left !important;
+    max-width: 60%;
+    display: inline-flex;
+}

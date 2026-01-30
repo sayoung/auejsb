@@ -1,0 +1,5 @@
+md_block.admin_block:
+  title: 'Les liens de 6 blocks'
+  description: 'Configure custom addrress mail'
+  parent: maps.admin_maps
+  route_name: md_block.admin_block

@@ -1,0 +1,5 @@
+name: maps
+type: module
+description: la carte.
+core: 8.x
+package: Custom

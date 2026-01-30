@@ -1,0 +1,15 @@
+commerce_cmi.commerce_payment_gateway.plugin.cmi_redirect_checkout:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    actionslk:
+      type: string
+      label: 'Gateway'
+    merchant_id:
+      type: string
+      label: 'ClientId'
+    SLKSecretkey:
+      type: string
+      label: 'Clé de hachage'
+    confirmation_mode:
+      type: string
+      label: 'Mode de confirmation'

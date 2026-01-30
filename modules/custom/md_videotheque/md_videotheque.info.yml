@@ -1,0 +1,5 @@
+name: Video Homepage
+type: module
+description: Videothèque.
+core: 8.x
+package: Custom

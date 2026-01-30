@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% if logged_in %} 
+		<ul class="gva_menu_user_log">
+        
+            <li class="menu-item usr-log-edit " >
+        <a href="https://auejsb.ma/user/{{ user.id }}/edit">
+		<span class="icon">
+		 <i class="fas fa-user-edit" style="color: white;"></i>
+		  
+		</span>
+		</a>
+		
+        
+      </li>
+    
+            <li class="menu-item usr-log-out" >
+        <a href="https://auejsb.ma/user/logout">
+		<span class="icon">
+		 <i class="fas fa-user-lock" style="color: white;"></i>
+		  
+		</span>
+		</a>
+		
+        
+      </li>
+        </ul>
+		
+           {% else %}
+		   <ul class="gva_menu_user">
+        
+            <li class="menu-item usr-log-in">
+        <a href="https://auejsb.ma/user/login" tabindex="-1">
+		<span class="icon">
+		 <i class="fas fa-user" style="color: white;"></i>
+		  
+		</span>
+		</a>
+		
+        
+      </li>
+        </ul>
+		   
+		 {% endif %}

@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains md_maps.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function md_maps_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_maps module.
+    case 'help.page.md_maps':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: la carte .') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_maps_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_maps' => array(
+          'variables' => array('md_maps' => NULL),
+          'template' => 'theme-md-maps'
+      ),
+  );
+}

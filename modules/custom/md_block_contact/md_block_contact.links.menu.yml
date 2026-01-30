@@ -1,0 +1,11 @@
+md_block_contact.admin_block:
+  title: 'Block Maps'
+  description: 'Configure block maps'
+  parent: maps.admin_maps
+  route_name: md_block_contact.admin_block
+
+md_block_contact_menu.admin_block:
+  title: 'menu bas'
+  description: 'Configure block maps'
+  parent: maps.admin_maps
+  route_name: md_block_contact_menu.admin_block

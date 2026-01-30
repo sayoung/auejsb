@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Contains md_agenda.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_agenda_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_agenda module.
+    case 'help.page.md_agenda':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Agenda for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_agenda_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_agenda_hp' => array(
+'variables' => ['nodes' => NULL ,'offres' => NULL,'cur_lang' => NULL],
+          'template' => 'theme-md-agenda-hp',
+
+      ),
+      'theme_md_agenda_page' => array(
+          'variables' => ['nodes' => NULL,'cur_lang' => NULL],
+          'template' => 'theme-md-agenda-page'
+      ),
+    'theme_tag' => [
+      'variables' => ['my_variable' => NULL],
+    ],
+  );
+}

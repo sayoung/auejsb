@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Contains md_publication.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\md_publication\Newsletter\Newsletter;
+
+/**
+ * Implements hook_help().
+ */
+function md_publication_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_publication module.
+    case 'help.page.md_publication':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_publication_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_publication' => array(
+          'variables' => array('publication' => NULL),
+          'template' => 'theme-md-publication'
+      ),
+	  'theme_md_publication_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-publication-page'
+      ),
+      'theme_md_brochures_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-brochures-page'
+      ),
+      'theme_md_magazine_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-magazine-page'
+      ),
+      'theme_md_rapport_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-rapport-page'
+      ),
+      'theme_md_ressources_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-ressources-page'
+      ),
+      'theme_md_indicateurs_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-indicateurs-page'
+      ),
+      'theme_md_chart_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL,'vars_tile' => NULL  ),
+          'template' => 'theme-md-chart-page'
+      ),
+  );
+}
+

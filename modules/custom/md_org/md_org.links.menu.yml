@@ -1,0 +1,5 @@
+md_org.admin_org:
+  title: 'l organigramme de l agence'
+  description: 'l organigramme de l agence'
+  parent: maps.admin_maps
+  route_name: md_org.admin_org

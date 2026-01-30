@@ -1,0 +1,7 @@
+md_actualite:
+    path: '/responsable-de-lauem'
+    defaults:
+        _controller: 'Drupal\md_user\Controller\UserController::getUser'
+        _title: 'Responsables de l’Agence'
+    requirements:
+        _access: 'TRUE'

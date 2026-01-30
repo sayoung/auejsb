@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains md_block.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_block_contact_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_block_contact module.
+    case 'help.page.md_block_contact':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_block_contact_theme($existing, $type, $theme, $path)
+{
+
+  return array(
+      'theme_md_block_contact' => array(
+          'variables' => ['md_block_contact' => NULL, 'site_slogan_cnt'=> NULL],
+          'template' => 'theme-md-block-contact'
+      ),
+  );
+}

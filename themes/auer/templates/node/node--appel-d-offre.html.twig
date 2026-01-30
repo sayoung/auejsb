@@ -1,0 +1,21 @@
+<article{{ attributes.addClass(classes.addClass('node-detail')) }}>
+  <div class="post-block event-full">
+  <div  class="field field--name-title-text field--type-string ">{{ label }}</div>
+    <div class="post-thumbnail">
+
+      <div class="event-info clearfix">
+        <div class="date clearfix"><i class="fa fa-calendar"></i>{{ content.field_date }}  </div>
+		
+		<div class="date clearfix"><span class="coleur-pffre">{{ content.field__appel_d_offre['#title'] }} : </span> {{ node.field__appel_d_offre.value }} </div>
+		<div class="date clearfix"><span class="coleur-pffre">{{ content.field_maitre_douvrage['#title'] }} : </span> {{ node.field_maitre_douvrage.value }} </div>
+		 {% if content.field_objet_de_l_appel_d_offres.value %} <div class="date clearfix">
+		 <span class="coleur-pffre">{{ content.field_objet_de_l_appel_d_offres['#title'] }} : </span> {{ node.field_objet_de_l_appel_d_offres.value }} </div> {% endif %}
+		<div class="date clearfix"><span>{{ content.field_dao.label }}</span>{{ content.field_dao }} </div>
+		<div class="date clearfix"><span>{{ content.field_resultats.label }}</span>{{ content.field_resultats }} </div> 
+      </div>
+    </div>
+    
+  
+  </div>
+
+</article>

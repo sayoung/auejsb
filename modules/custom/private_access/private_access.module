@@ -1,0 +1,78 @@
+<?php
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\search_api\Event\SearchApiQueryEvent;
+use Drupal\search_api\SearchApiEvents;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\node\Entity\Node;
+
+
+/**
+ * Implements hook_node_access().
+ */
+function private_access_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Change 'private_article' to your actual content type machine name.
+  if ($node->getType() === 'note') {
+    if (!$account->hasPermission('administer nodes')) {
+      return AccessResult::forbidden();
+    }
+  }
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_access().
+ * (For extra protection if other entities try to access the node.)
+ */
+
+function private_access_entity_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  if ($entity instanceof NodeInterface && $entity->getType() === 'note') {
+    if (!$account->hasPermission('administer nodes')) {
+      return AccessResult::forbidden();
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function private_access_cron_queue_info() {
+  $queues['private_access_unpublish_notes'] = [
+    'worker callback' => 'private_access_unpublish_note_worker',
+    'time' => 15, // seconds per cron run (adjust as needed)
+  ];
+  return $queues;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function private_access_cron() {
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'note')
+    ->condition('status', 1)
+    ->range(0, 50) // limit per cron run to avoid overload
+    ->execute();
+
+  $queue = \Drupal::queue('private_access_unpublish_notes');
+  foreach ($nids as $nid) {
+    $queue->createItem($nid);
+  }
+}
+
+/**
+ * Worker callback to unpublish a single node.
+ */
+function private_access_unpublish_note_worker($nid) {
+  if ($node = Node::load($nid)) {
+    $node->setUnpublished();
+    $node->save();
+    \Drupal::logger('private_access')->notice('Unpublished note node with NID: ' . $nid);
+  }
+}

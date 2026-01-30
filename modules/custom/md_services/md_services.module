@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains md_services.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\md_services\Newsletter\Newsletter;
+
+/**
+ * Implements hook_help().
+ */
+function md_services_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_services module.
+    case 'help.page.md_services':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_services_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_services' => array(
+          'variables' => array('sliders' => NULL),
+          'template' => 'theme-md-services'
+      ),
+    'theme_md_services_interne' => array(
+      'variables' => array('sliders' => NULL),
+      'template' => 'theme-md-services-interne'
+    ),
+
+  );
+}
+

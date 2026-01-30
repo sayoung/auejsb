@@ -1,0 +1,7 @@
+md_videotheque:
+    path: '/videos'
+    defaults:
+        _controller: 'Drupal\md_videotheque\Controller\VideoController::getVideos'
+        _title: 'Vidéothèque '
+    requirements:
+        _access: 'TRUE'

@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }} id="instruction">
+
+
+
+
+{#  for new systeme  {% if ('client' in user.roles or 'anonymous' in user.roles) and 'valider' in etat_list %} #}
+{% if ('client' in user.roles or 'anonymous' in user.roles) and  product_entity.field_etat.value == "valider"  %}
+     {{ product }}
+  {% else %}
+  {{ product|without('variations') }} 
+   
+  {% endif %}
+  
+  
+
+
+
+</article>

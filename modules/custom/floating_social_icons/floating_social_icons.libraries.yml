@@ -1,0 +1,5 @@
+floating_social_icons:
+  version: 1.x
+  css:
+    theme:
+      css/floating_social_icons.css: {}

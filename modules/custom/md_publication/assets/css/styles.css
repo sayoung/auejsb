@@ -1,0 +1,26 @@
+.publications {
+	background-color:#c5c5c5;
+}
+.region-publication  {
+	background-color:#c5c5c5;
+	height: 407px;
+}
+.region-publication .carousel-item > img {
+	margin-left: calc((100% - 128px) / 2);
+}
+.region-publication  #carouselExampleControls {
+	margin-top: 30%;
+}
+.pub-head {
+	padding-top: 25px;
+	font-family: "robotocondensed", sans-serif;
+font-size: 20px;
+    font-weight: 700;
+    color: #729cb7;
+padding-left: 28px;
+}
+@media (max-width: 1680px) {
+.region-publication .carousel-item > img {
+    margin-left: calc((100% - 128px) / 2);
+}
+}

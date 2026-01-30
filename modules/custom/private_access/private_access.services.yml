@@ -1,0 +1,6 @@
+services:
+  private_access.search_api_exclude_subscriber:
+    class: Drupal\private_access\EventSubscriber\SearchApiExcludeSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }

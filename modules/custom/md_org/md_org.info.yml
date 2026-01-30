@@ -1,0 +1,5 @@
+name: auer organigrame
+type: module
+description: l'organigramme de la l'agence.
+core: 8.x
+package: Custom

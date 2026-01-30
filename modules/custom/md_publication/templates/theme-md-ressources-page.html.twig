@@ -1,0 +1,48 @@
+<div class="row">
+<div  class="col-12">
+	  <div  class="field field--name-title-text field--type-string ">{% trans %}Ressources documentaires{% endtrans %} </div>
+	  </div>
+
+		<div class="grid-shuffle col-12">
+          <ul id="grid" class="row">
+	  {% set lang = cur_lang %}
+
+{% for node in nodes %}
+            <li class="book-item col-md-6 col-12" >
+              <div class="bk-img">
+                <div class="bk-wrapper">
+                  <div class="bk-book bk-bookdefault">
+                    <div class="bk-front">
+                      <div class="bk-cover" style="background-image: url('{{ file_url(node.field_image_slider.entity.fileuri) }}')"></div>
+                    </div>
+                    <div class="bk-back"></div>
+                    <div class="bk-left"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="item-details">
+			   
+                <h3 class="book-item_title"> {% if node.hastranslation(lang) %}
+    {{ node.translation(lang).title.0.value }}
+    {% else %}
+    {{ 'No translation'|t }}
+    {% endif %}</h3>
+               
+                <p>{% if node.hastranslation(lang) %}
+    
+	{% set text = node.translation(lang).body.0.value|render|striptags %}
+      {{ text|length > 200 ? text|slice(0, 200) ~ '...' : text }}
+    {% else %}
+    {{ 'No translation'|t }}
+    {% endif %}</p>
+               <a target="_blank" href="{{ file_url(node.field_document.entity.uri.value) }}" class="button ">{{ 'Télécharger'|t }}</a>
+              </div>
+            </li>
+{% endfor %}
+       
+          </ul>
+        </div>
+		 </div>
+
+<script src='https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Shuffle/4.0.0/shuffle.min.js'></script>

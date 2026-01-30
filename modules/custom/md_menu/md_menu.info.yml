@@ -1,0 +1,5 @@
+name: Menu Homepage
+type: module
+description: MD Menu.
+core: 8.x
+package: Custom

@@ -1,0 +1,227 @@
+Warning: rename(sites/default/files/php/twig/.dvEbBAA7AyzVy_UdND5z9g57Sck,sites/default/files/php/twig/5e87ef183027f___string_template__6a2704_xOa1_L3hKk069RsWiv-PXVCSJ/GC4hdRASfNUnDuUl-6AsREc9wrHd7EOvq6rblwdzQM4.php): Acc�s refus�. (code: 5) in Drupal\Component\PhpStorage\MTimeProtectedFastFileStorage->save() (line 88 of core\lib\Drupal\Component\PhpStorage\MTimeProtectedFastFileStorage.php).
+
+Drupal\Component\PhpStorage\MTimeProtectedFastFileStorage->save('5e87ef183027f___string_template__6a2704_xOa1_L3hKk069RsWiv-PXVCSJ', '&lt;?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+
+/* __string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b */
+class __TwigTemplate_f9f3e7cbf2713e55f28d4bd28e6140f43876a19971bc5c8969d1cc0a65a75183 extends \Twig\Template
+{
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this-&gt;parent = false;
+
+        $this-&gt;blocks = [
+        ];
+        $this-&gt;sandbox = $this-&gt;env-&gt;getExtension('\Twig\Extension\SandboxExtension');
+        $tags = [];
+        $filters = ["safe_join" =&gt; 1];
+        $functions = [];
+
+        try {
+            $this-&gt;sandbox-&gt;checkSecurity(
+                [],
+                ['safe_join'],
+                []
+            );
+        } catch (SecurityError $e) {
+            $e-&gt;setSourceContext($this-&gt;getSourceContext());
+
+            if ($e instanceof SecurityNotAllowedTagError &amp;&amp; isset($tags[$e-&gt;getTagName()])) {
+                $e-&gt;setTemplateLine($tags[$e-&gt;getTagName()]);
+            } elseif ($e instanceof SecurityNotAllowedFilterError &amp;&amp; isset($filters[$e-&gt;getFilterName()])) {
+                $e-&gt;setTemplateLine($filters[$e-&gt;getFilterName()]);
+            } elseif ($e instanceof SecurityNotAllowedFunctionError &amp;&amp; isset($functions[$e-&gt;getFunctionName()])) {
+                $e-&gt;setTemplateLine($functions[$e-&gt;getFunctionName()]);
+            }
+
+            throw $e;
+        }
+
+    }
+
+    protected function doDisplay(array $context, array $blocks = [])
+    {
+        // line 1
+        echo $this-&gt;env-&gt;getExtension('Drupal\Core\Template\TwigExtension')-&gt;renderVar($this-&gt;env-&gt;getExtension('Drupal\Core\Template\TwigExtension')-&gt;safeJoin($this-&gt;env, $this-&gt;sandbox-&gt;ensureToStringAllowed(($context["items"] ?? null)), $this-&gt;sandbox-&gt;ensureToStringAllowed(($context["separator"] ?? null))));
+    }
+
+    public function getTemplateName()
+    {
+        return "__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  55 =&gt; 1,);
+    }
+
+    /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
+    public function getSource()
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0. Use getSourceContext() instead.', E_USER_DEPRECATED);
+
+        return $this-&gt;getSourceContext()-&gt;getCode();
+    }
+
+    public function getSourceContext()
+    {
+        return new Source("{# inline_template_start #}{{ items | safe_join(separator) }}", "__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b", "");
+    }
+}
+') (Line: 111)
+Drupal\Core\Template\TwigPhpStorageCache->write('5e87ef183027f___string_template__6a2704_xOa1_L3hKk069RsWiv-PXVCSJ', '&lt;?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+
+/* __string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b */
+class __TwigTemplate_f9f3e7cbf2713e55f28d4bd28e6140f43876a19971bc5c8969d1cc0a65a75183 extends \Twig\Template
+{
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this-&gt;parent = false;
+
+        $this-&gt;blocks = [
+        ];
+        $this-&gt;sandbox = $this-&gt;env-&gt;getExtension('\Twig\Extension\SandboxExtension');
+        $tags = [];
+        $filters = ["safe_join" =&gt; 1];
+        $functions = [];
+
+        try {
+            $this-&gt;sandbox-&gt;checkSecurity(
+                [],
+                ['safe_join'],
+                []
+            );
+        } catch (SecurityError $e) {
+            $e-&gt;setSourceContext($this-&gt;getSourceContext());
+
+            if ($e instanceof SecurityNotAllowedTagError &amp;&amp; isset($tags[$e-&gt;getTagName()])) {
+                $e-&gt;setTemplateLine($tags[$e-&gt;getTagName()]);
+            } elseif ($e instanceof SecurityNotAllowedFilterError &amp;&amp; isset($filters[$e-&gt;getFilterName()])) {
+                $e-&gt;setTemplateLine($filters[$e-&gt;getFilterName()]);
+            } elseif ($e instanceof SecurityNotAllowedFunctionError &amp;&amp; isset($functions[$e-&gt;getFunctionName()])) {
+                $e-&gt;setTemplateLine($functions[$e-&gt;getFunctionName()]);
+            }
+
+            throw $e;
+        }
+
+    }
+
+    protected function doDisplay(array $context, array $blocks = [])
+    {
+        // line 1
+        echo $this-&gt;env-&gt;getExtension('Drupal\Core\Template\TwigExtension')-&gt;renderVar($this-&gt;env-&gt;getExtension('Drupal\Core\Template\TwigExtension')-&gt;safeJoin($this-&gt;env, $this-&gt;sandbox-&gt;ensureToStringAllowed(($context["items"] ?? null)), $this-&gt;sandbox-&gt;ensureToStringAllowed(($context["separator"] ?? null))));
+    }
+
+    public function getTemplateName()
+    {
+        return "__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b";
+    }
+
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  55 =&gt; 1,);
+    }
+
+    /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
+    public function getSource()
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0. Use getSourceContext() instead.', E_USER_DEPRECATED);
+
+        return $this-&gt;getSourceContext()-&gt;getCode();
+    }
+
+    public function getSourceContext()
+    {
+        return new Source("{# inline_template_start #}{{ items | safe_join(separator) }}", "__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b", "");
+    }
+}
+') (Line: 487)
+Twig\Environment->loadClass('__TwigTemplate_f9f3e7cbf2713e55f28d4bd28e6140f43876a19971bc5c8969d1cc0a65a75183', '__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b', NULL) (Line: 445)
+Twig\Environment->loadTemplate('__string_template__6a27047eeba00af1c60ff2f4c59e9e614903a38f7c90d62ed5441a2edb82b31b') (Line: 542)
+Twig\Environment->createTemplate('{# inline_template_start #}{{ items | safe_join(separator) }}') (Line: 173)
+Drupal\Core\Template\TwigEnvironment->renderInline('{# inline_template_start #}{{ items | safe_join(separator) }}', Array) (Line: 52)
+Drupal\Core\Render\Element\InlineTemplate::preRenderInlineTemplate(Array)
+call_user_func_array(Array, Array) (Line: 100)
+Drupal\Core\Render\Renderer->doTrustedCallback(Array, Array, 'Render #pre_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was %s. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725', 'silenced_deprecation', 'Drupal\Core\Render\Element\RenderCallbackInterface') (Line: 781)
+Drupal\Core\Render\Renderer->doCallback('#pre_render', Array, Array) (Line: 372)
+Drupal\Core\Render\Renderer->doRender(Array, ) (Line: 200)
+Drupal\Core\Render\Renderer->render(Array) (Line: 727)
+Drupal\views\Plugin\views\field\EntityField->renderItems(Array) (Line: 1180)
+Drupal\views\Plugin\views\field\FieldPluginBase->advancedRender(Object) (Line: 236)
+template_preprocess_views_view_field(Array, 'views_view_field', Array) (Line: 287)
+Drupal\Core\Theme\ThemeManager->render('views_view_field', Array) (Line: 431)
+Drupal\Core\Render\Renderer->doRender(Array, ) (Line: 200)
+Drupal\Core\Render\Renderer->render(Array) (Line: 1747)
+Drupal\views\Plugin\views\field\FieldPluginBase->theme(Object) (Line: 770)
+Drupal\views\Plugin\views\style\StylePluginBase->elementPreRenderRow(Array)
+call_user_func_array(Array, Array) (Line: 100)
+Drupal\Core\Render\Renderer->doTrustedCallback(Array, Array, 'Render #pre_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was %s. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725', 'silenced_deprecation', 'Drupal\Core\Render\Element\RenderCallbackInterface') (Line: 781)
+Drupal\Core\Render\Renderer->doCallback('#pre_render', Array, Array) (Line: 372)
+Drupal\Core\Render\Renderer->doRender(Array, ) (Line: 200)
+Drupal\Core\Render\Renderer->render(Array) (Line: 709)
+Drupal\views\Plugin\views\style\StylePluginBase->renderFields(Array) (Line: 576)
+Drupal\views\Plugin\views\style\StylePluginBase->renderGrouping(Array, Array, 1) (Line: 468)
+Drupal\views\Plugin\views\style\StylePluginBase->render(Array) (Line: 2140)
+Drupal\views\Plugin\views\display\DisplayPluginBase->render() (Line: 1533)
+Drupal\views\ViewExecutable->render() (Line: 183)
+Drupal\views\Plugin\views\display\Page->execute() (Line: 1630)
+Drupal\views\ViewExecutable->executeDisplay('page_1', Array) (Line: 77)
+Drupal\views\Element\View::preRenderViewElement(Array)
+call_user_func_array(Array, Array) (Line: 100)
+Drupal\Core\Render\Renderer->doTrustedCallback(Array, Array, 'Render #pre_render callbacks must be methods of a class that implements \Drupal\Core\Security\TrustedCallbackInterface or be an anonymous function. The callback was %s. Support for this callback implementation is deprecated in 8.8.0 and will be removed in Drupal 9.0.0. See https://www.drupal.org/node/2966725', 'silenced_deprecation', 'Drupal\Core\Render\Element\RenderCallbackInterface') (Line: 781)
+Drupal\Core\Render\Renderer->doCallback('#pre_render', Array, Array) (Line: 372)
+Drupal\Core\Render\Renderer->doRender(Array, ) (Line: 200)
+Drupal\Core\Render\Renderer->render(Array, ) (Line: 226)
+Drupal\Core\Render\MainContent\HtmlRenderer->Drupal\Core\Render\MainContent\{closure}() (Line: 573)
+Drupal\Core\Render\Renderer->executeInRenderContext(Object, Object) (Line: 227)
+Drupal\Core\Render\MainContent\HtmlRenderer->prepare(Array, Object, Object) (Line: 117)
+Drupal\Core\Render\MainContent\HtmlRenderer->renderResponse(Array, Object, Object) (Line: 90)
+Drupal\Core\EventSubscriber\MainContentViewSubscriber->onViewRenderArray(Object, 'kernel.view', Object)
+call_user_func(Array, Object, 'kernel.view', Object) (Line: 111)
+Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher->dispatch('kernel.view', Object) (Line: 156)
+Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object, 1) (Line: 68)
+Symfony\Component\HttpKernel\HttpKernel->handle(Object, 1, 1) (Line: 57)
+Drupal\Core\StackMiddleware\Session->handle(Object, 1, 1) (Line: 47)
+Drupal\Core\StackMiddleware\KernelPreHandle->handle(Object, 1, 1) (Line: 106)
+Drupal\page_cache\StackMiddleware\PageCache->pass(Object, 1, 1) (Line: 85)
+Drupal\page_cache\StackMiddleware\PageCache->handle(Object, 1, 1) (Line: 47)
+Drupal\Core\StackMiddleware\ReverseProxyMiddleware->handle(Object, 1, 1) (Line: 52)
+Drupal\Core\StackMiddleware\NegotiationMiddleware->handle(Object, 1, 1) (Line: 23)
+Stack\StackedHttpKernel->handle(Object, 1, 1) (Line: 694)
+Drupal\Core\DrupalKernel->handle(Object) (Line: 19)

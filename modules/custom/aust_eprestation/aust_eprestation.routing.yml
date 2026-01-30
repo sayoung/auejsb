@@ -1,0 +1,21 @@
+eprestation.admin_synchroniser:
+  path: '/admin/config/eprestation/synchroniser'
+  defaults:
+    _form: '\Drupal\aust_eprestation\Form\EprestationForm'
+    _title: 'Eprestation synchroniser'
+  requirements:
+    _permission: 'administer site configuration'
+eprestation.admin_smsemail:
+  path: '/admin/config/eprestation/smsemail'
+  defaults:
+    _form: '\Drupal\aust_eprestation\Form\EprestationConfigForm'
+    _title: 'Config SMS E-mail'
+  requirements:
+    _permission: 'administer site configuration'
+eprestation.admin_eservices:
+  path: '/admin/config/eprestation/smsemail'
+  defaults:
+    _form: '\Drupal\aust_eprestation\Form\EprestationConfigForm'
+    _title: 'Config SMS E-mail'
+  requirements:
+    _permission: 'administer site configuration'

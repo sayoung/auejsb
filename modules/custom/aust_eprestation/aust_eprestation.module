@@ -1,0 +1,117 @@
+<?php
+
+use Drupal\aust_eprestation\Helper\Helper;
+use Drupal\aust_eprestation\Eprestation\Eprestation;
+use Drupal\commerce_product\Entity\ProductInterface;
+
+use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_price\Price;
+/**
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
+ *
+ */
+
+function aust_eprestation_commerce_product_presave(ProductInterface $product) {
+  switch ($product->bundle()) {
+    case 'e_prestation':
+        $isSMS = $product->get('field_is_sms')->getValue();
+		$ispayed = $product->get('field_is_payed')->getValue();
+        $isMailed = $product->get('field_is_mailed')->getValue();
+		$is_cal = $product->get('field_is_calculer')->getValue();
+		$isPrice = $product->get('variations')->getValue();
+		$chez_le_technicien = $product->get('field_chez_le_technicien')->getValue();
+		$chez_le_comptable = $product->get('field_chez_le_comptable')->getValue();
+		$phone_numbre = $product->get('field_phone_number0')->getValue();
+		$code_suivi = $product->get('field_code_de_suivi')->getValue();
+		$is_after_paiment = $product->get('field_is_payed_after')->getValue();
+         $to = '';
+        if(!$isSMS[0]['value'] && $product->get('field_phone_number0')->getValue()){
+            $product->set('field_code_de_suivi', time());
+			$product->set('field_etat_de_dossier' , "Traitement");
+			$product->set('field_chez_le_technicien', 1);
+		//	Helper::deleteAll();
+			
+			Helper::sendMailFinalTechnicien($product->get('field_votre_e_mail')->getValue(), $product->get('field_code_de_suivi')->getValue(), 'Nouvelle demande de prestation');
+			/*$variationid = intval($isPrice);
+			 //kint(\Drupal\commerce_product\Entity\ProductVariation::load(11));
+			 $issprice =  $isPrice[0]['target_id'];
+			 $variation = \Drupal\commerce_product\Entity\ProductVariation::load($issprice);
+			 $variation->set('sku',time());
+			// kint($variation);
+			 //$product->set('variations_sku', time()); */
+
+        }
+		if($product->get('field_metrage')->getValue() && !$chez_le_comptable[0]['value']  ){
+
+			$product->set('field_etat_de_dossier' , "Comptabilité");
+			$product->set('field_chez_le_comptable', 1);
+			
+			Helper::sendMailFinalComptable($to, $product->get('field_code_de_suivi')->getValue(), 'Nouvelle demande de prestation');
+			//Helper::sendMailFinalTechnicien('mourad.dardari@gmail.com', $product->get('field_code_de_suivi')->getValue(), 'E Prestation 2');^
+
+        }
+
+        if(!$isSMS[0]['value'] && $product->get('field_phone_number0')->getValue()){
+			    //kint($phone_numbre[0]['value']);
+				// die;
+			 Helper::sendSMS($phone_numbre[0]['value'], $product->get('field_code_de_suivi')->getValue());
+                $product->set('field_is_sms' , 1);
+        		$product->set('field_demande_de_calcul' , 1);
+                drupal_set_message(t('Your message has been sent.'));
+
+            
+            $ePrestationCm   = $product->get('field_code_com')->target_id;
+                $ePrestationNmDs = $product->get('field_num_doss')->getValue();
+                $ePrestationType = $product->get('field_commission')->target_id;
+              //  Helper::setCalculEPrestation($ePrestationCm, $ePrestationNmDs[0]['value'], $ePrestationType);
+        }
+        
+		
+        if(!$isMailed[0]['value'] && $product->get('field_votre_e_mail')->getValue()){
+            Helper::sendMail($product->get('field_votre_e_mail')->getValue(), $product->get('field_code_de_suivi')->getValue(), 'E-Prestation');
+			//Helper::sendMailFinalTechnicien('mourad.dardari@gmail.com', $product->get('field_code_de_suivi')->getValue(), 'E Prestation');
+            $product->set('field_is_mailed', 1);
+			$product->set('field_demande_de_calcul' , 1);
+			
+        }
+		if(!$is_after_paiment[0]['value'] && $ispayed[0]['value'] ){
+		    $product->set('field_is_payed_after' , 1);
+			Helper::sendMailFinalClient($product->get('field_votre_e_mail')->getValue(), $product->get('field_code_de_suivi')->getValue(), 'E-Prestation');
+		}
+		if($product->get('field_votre_e_mail')->getValue() ){
+			//$productid = $product->get('product_id')->getValue();
+			// $product = \Drupal\commerce_product\Entity\Product::load($product->get('product_id')->getValue());
+			 $variationid = intval($isPrice);
+			// kint(\Drupal\commerce_product\Entity\ProductVariation::load(11));
+			 $issprice =  $isPrice[0]['target_id'];
+			 $variation = \Drupal\commerce_product\Entity\ProductVariation::load($issprice);
+			 $ama = $variation->get('price')->getValue();
+//kint($ama[0]['number']);
+			 if($ama[0]['number'] && !$is_cal[0]['value']){
+		    $result = Helper::sendSMSFinal($phone_numbre[0]['value'], $product->get('field_code_de_suivi')->getValue());
+			Helper::sendMailFinal($product->get('field_votre_e_mail')->getValue(), $product->get('field_code_de_suivi')->getValue(), 'E-Prestation');
+			$product->set('field_etat_de_dossier' , "paiement");
+			$product->set('field_is_calculer', 1);
+
+
+			 }
+			 
+               //  kint($product);
+//product.variation_price
+
+//kint($product.variation_price);
+//exit;
+		 //print_r('<pre>');kint($variation);exit;
+		}
+    break;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function aust_eprestation_cron(){
+    //Helper::deleteAll();
+}
+

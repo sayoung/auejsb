@@ -1,0 +1,5 @@
+name: webform_mail_custom
+type: module
+description: send an email programmatically after node created.
+core: 8.x
+package: Custom

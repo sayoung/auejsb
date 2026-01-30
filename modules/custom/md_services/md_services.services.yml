@@ -1,0 +1,5 @@
+services:
+  md_services.twig_extension:
+    class: Drupal\md_services\TwigExtension\TwigWordCountExtension
+    tags:
+      - { name: twig.extension }

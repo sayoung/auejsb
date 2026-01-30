@@ -1,0 +1,15 @@
+eprestation.admin:
+  title: 'Synchroniser E-prestation'
+  description: 'Synchroniser les E-prestation AUST'
+  parent: eprestation.admin_eservices
+  route_name: eprestation.admin_synchroniser
+eprestation.admin_smsemail:
+  title: 'Paramètres E-prestation'
+  description: 'Configure custom addrress mail'
+  parent: eprestation.admin_eservices
+  route_name: eprestation.admin_smsemail
+eprestation.admin_eservices:
+  title: 'E-services'
+  description: 'e-services'
+  parent: system.admin_structure
+  route_name: eprestation.admin_eservices

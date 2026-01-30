@@ -1,0 +1,5 @@
+name: auer user
+type: module
+description: Les responsable de l’AUEM.
+core: 8.x
+package: Custom

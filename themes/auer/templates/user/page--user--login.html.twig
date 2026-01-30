@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Gavias's theme implementation to display a single Drupal page.
+ */
+#}
+
+<div class="page-user-login gva-body-page body-page">
+   <div class="bg"></div>
+   <div role="main" class="main main-page">
+      <div class="branding text-center">
+         {% if page.branding %}
+            {{ page.branding }}
+         {% endif %}
+      </div>
+      
+         <div class="help show">
+            <div class="container">
+               <div class="content-inner">
+                   <div class="account-create text-center ">
+                     <h4>{{ "VOUS N'AVEZ PAS DE COMPTE ?"|t }}</h4>
+                     <div class="btn-wrapper">
+                        <a href="/client" class="theme-btn-1 btn black-btn">{{ 'CRÉER UN COMPTE'|t }}</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      
+      <div class="clearfix"></div>
+      <div id="content" class="content content-full">
+         {% if page.content %}
+            <div class="content-main">
+               {{ page.content }}
+            </div>
+            
+            <div class="col-lg-6">
+                 
+               </div>
+         {% endif %}
+      </div>
+   </div>
+</div>

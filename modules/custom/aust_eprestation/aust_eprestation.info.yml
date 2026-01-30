@@ -1,0 +1,7 @@
+name: AUST E-prestation
+type: module
+description: Module for insert AUST E-prestation in AUST Website.
+
+core: 8.x
+project: 'aust'
+

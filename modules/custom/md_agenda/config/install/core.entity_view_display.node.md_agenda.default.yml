@@ -1,0 +1,24 @@
+# core.entity_view_display.node.md_agenda.default.yml
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.md_agenda.body
+        - node.type.md_agenda
+    module:
+        - text
+        - user
+id: node.md_agenda.default
+targetEntityType: node
+bundle: md_agenda
+mode: default
+content:
+    body:
+        label: hidden
+        type: text_default
+        weight: 101
+        settings: {  }
+        third_party_settings: {  }
+    links:
+        weight: 100
+hidden: {  }

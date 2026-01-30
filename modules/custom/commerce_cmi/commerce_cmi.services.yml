@@ -1,0 +1,3 @@
+services:
+  commerce_cmi.mandrill:
+    class: Mandrill

@@ -1,0 +1,8 @@
+md_social.admin_social:
+  path: '/admin/config/md_social/social'
+  defaults:
+    _form: '\Drupal\md_social\Form\SocialConfigForm'
+    _title: 'Social Network'
+  requirements:
+    _permission: 'administer site configuration'
+

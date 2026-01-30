@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Contains commerce_cmi.module.
+ */
+
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\notemail\Helper\Helper;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\Core\Site\Settings;
+use Drupal\KernelTests\KernelTestBase;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface; 
+
+/**
+ * Implements hook_help().
+ */
+function commerce_cmi_help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the commerce_cmi module.
+        case 'help.page.commerce_cmi':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Integrates CMI Payment Gateway with Drupal Commerce.') . '</p>';
+            return $output;
+
+        default:
+    }
+}
+
+
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function commerce_cmi_form_commerce_checkout_flow_multistep_default_alter(&$form, FormStateInterface $form_state) {
+    $build_info = $form_state->getBuildInfo();
+    if(isset($build_info['args']) && in_array('payment', $build_info['args'], true)){
+        $form['form_build_id']['#access'] = FALSE;
+        $form['form_token']['#access'] = FALSE;
+        $form['form_id']['#access'] = FALSE;
+    }
+
+
+
+
+}
+/**  
+ * Implements hook_mail().
+ */
+function commerce_cmi_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'node_insert':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t(' @title', array('@title' => $params['node_title']), $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function commerce_cmi_mail_alter(&$message) {
+  switch ($message['key']) {
+    case 'node_insert':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      break;
+  }
+}

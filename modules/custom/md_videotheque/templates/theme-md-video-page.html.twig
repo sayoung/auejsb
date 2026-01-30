@@ -1,0 +1,13 @@
+<div class="row video">
+    {% for node in nodes %}
+    <div class="col-md-3">
+        {% set code = node.field_video.0.value|split('/') %}
+      <a class="video-popup-trigger" href="https://www.youtube.com/watch?v={{ code
+              |last }}">
+          <img class="" src="https://img.youtube.com/vi/{{ code
+              |last }}/hqdefault.jpg">
+              </a>
+           <p>  {{ node.label }} </p>
+        </div>
+    {% endfor %}
+</div>

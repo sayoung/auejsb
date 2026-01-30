@@ -1,0 +1,136 @@
+#views-exposed-form-suivi-e-prestation-page-1, #views-exposed-form-suivi-de-la-note-page-1,#views-exposed-form-e-prestation-demn-page-2 {
+padding: 40px;
+width: 800px;	
+}
+form[id^="views-exposed-form"] {
+padding: 40px;
+padding-bottom: 80px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+margin-bottom: 50px;	
+}
+#edit-field-num-wrapper {
+	clear: both;
+}
+.feild-produit-vent > .feild-produit-vent{
+	width:100%;
+}
+.moderation .verification:nth-child(1) {color:red;}
+.moderation .comptabilite:nth-child(2) {color:red;}
+.moderation .traitement:nth-child(3) {color:red;}
+.moderation .validation:nth-child(4) {color:red;}
+.moderation .dispatcheur:nth-child(5) {color:red;}
+ul.moderation li {list-style: none;
+float: left;
+padding-right: 20px;
+}
+.moderation ol {
+  position: relative;
+  overflow: hidden;
+  counter-reset: wizard;
+}
+
+.moderation li {
+  position: relative;
+  float: left;
+  width: 16%;
+  text-align: left;
+  color: #057d62;
+}
+
+.moderation .current ~ li {
+  color: #555;
+}
+
+.moderation li:before {
+  counter-increment: wizard;
+  content: counter(wizard);
+  display: block;
+  color: #fff;
+  background-color: #057d62;
+  border: 2px solid #057d62;
+  text-align: center;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 2em;
+  position: relative;
+  left: unset;
+  margin-bottom: 1em;
+  margin-left: -1.67em;
+  z-index: 1;
+  font-weight:600;
+}
+.moderation .current ~ li:before {
+  background-color: black;
+  color: #555;
+  border-color: #555;
+}
+
+ .moderation li +  li:after {
+  content: "";
+  display: block;
+  width: 100%;
+  background-color: #057d62;
+  height: 2px;
+  position: absolute;
+  left: -100%;
+  top: 1em;
+  z-index: 0;
+}
+
+.moderation .current ~ li:after {
+  background-color: #555;
+}
+.wizarrd-noir {
+	color:#000;
+	font-weight: 600;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.wizarrd {
+	color:#057d62;
+	font-weight: 600;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.cart-pros .prod_title {
+    text-transform: capitalize;
+    color: #000000;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 600;
+}
+#note-css .field {
+	width:100%;
+}
+#note-css .field__label {
+	width:30%;
+	float:left;
+	font-weight:501;
+}
+#note-css .field__item {
+	width:70%; 
+	float:left;
+	font-weight:501;
+}
+.view-suivi-de-la-note .view-content .views-row  {
+    width:100%;
+}
+.view-suivi-de-la-note .view-content .views-row .views-field-title {
+    padding-left:25px;
+}
+.piece_comp  > legend ,.form-item-pieces-complementaires label {
+   width: 33% !important;
+float: left !important;
+line-height: 1.5; 
+}
+ select.piece_comp {
+width: 100%;
+max-width: 350px;
+height: 36px;
+padding: 0 20px;
+    padding-top: 0px;
+display: block !important;
+padding-top: 5px;
+background-color: white;
+}

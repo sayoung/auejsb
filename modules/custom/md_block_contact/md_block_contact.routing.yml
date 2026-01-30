@@ -1,0 +1,15 @@
+md_block_contact.admin_block:
+  path: '/admin/config/footer/md_block_contact'
+  defaults:
+    _form: '\Drupal\md_block_contact\Form\BlocConfigForm'
+    _title: 'Block maps'
+  requirements:
+    _permission: 'administer site configuration'
+
+md_block_contact_menu.admin_block:
+  path: '/admin/config/footer/contact_menu'
+  defaults:
+    _form: '\Drupal\md_block_contact\Form\MenuConfigForm'
+    _title: 'block footer menu'
+  requirements:
+    _permission: 'administer site configuration'

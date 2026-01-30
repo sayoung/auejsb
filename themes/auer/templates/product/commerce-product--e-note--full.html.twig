@@ -1,0 +1,32 @@
+<article{{ attributes }} id="regle-enote">
+<h2>Details de Votre Dossier</h2>
+ {% if product.field_titre_foncier %}
+  {{ product.field_titre_foncier }}
+  {% endif %}
+   {% if product.field_mail %}
+  {{ product.field_mail }}
+  {% endif %}
+   {% if product.field_cin %}
+  {{ product.field_cin }}
+  {% endif %}
+     {% if product.field_code_de_suivi %}
+  {{ product.field_code_de_suivi }}
+  {% endif %}
+
+    {% if product.variation_price %}
+  {{ product.variation_price }}
+  {% endif %}
+
+     {% if product_entity.field_is_payed.value == 1 %}
+     <div class="yes-paye">
+	     <h2>{% trans %}Votre dossier à été payée{% endtrans %}</h2>
+	 {{- product|without('variation_attributes','variations') -}}
+	 </div>
+    
+	 {% else %}
+	 <div class="no-paye">
+	      
+	{{- product|without('variation_attributes','variation_price') -}}
+	 </div>
+	
+	{% endif %} 

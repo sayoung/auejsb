@@ -1,0 +1,31 @@
+md_count.admin:
+  path: '/admin/config/count/ajouter'
+  defaults:
+    _form: '\Drupal\md_count\Form\ServiceConfigForm'
+    _title: 'list mail Event'
+  requirements:
+    _permission: 'administer site configuration'
+
+md_count.display_table_controller_display:
+  path: '/admin/config/count/list'
+  defaults:
+    _controller: '\Drupal\md_count\Controller\DisplayTableController::display'
+    _title: 'display'
+  requirements:
+    _permission: 'access content'
+
+md_count.delete_form:
+  path: '/admin/count/form/delete/{cid}'
+  defaults:
+    _form: '\Drupal\md_count\Form\DeleteForm'
+    _title: 'DeleteForm'
+  requirements:
+    _access: 'TRUE'
+
+md_count.Update_Form:
+  path: '/admin/count/form/update/{cid}'
+  defaults:
+    _form: '\Drupal\md_count\Form\UpdateForm'
+    _title: 'UpdateForm'
+  requirements:
+    _access: 'TRUE'

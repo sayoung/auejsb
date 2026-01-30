@@ -1,0 +1,14 @@
+name: Floating Social Icons
+type: module
+description: This module helps to display social website information using drupal blocks.
+# core: 8.x
+package: Custom
+dependencies:
+  - fontawesome:fontawesome
+  - drupal:block
+
+# Information added by Drupal.org packaging script on 2018-04-12
+version: '8.x-1.1'
+core: '8.x'
+project: 'floating_social_icons'
+datestamp: 1523544787

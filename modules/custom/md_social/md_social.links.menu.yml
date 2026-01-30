@@ -1,0 +1,5 @@
+md_social.admin_social:
+  title: 'Social Network'
+  description: 'Configure custom addrress mail'
+  parent: maps.admin_maps
+  route_name: md_social.admin_social

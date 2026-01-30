@@ -1,0 +1,122 @@
+.md_appel_offre {height:50vh;background-color: #4a52a1;}
+.md_appel_offre h2{
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+	font-family: "Montserrat", sans-serif !important;
+	font-weight:bold;
+}
+.md_appel_offre h3{
+    color: #474f51;
+    font-size: 20px;
+    text-transform: unset;
+	height:20px;
+}
+[dir="rtl"] .md_appel_offre h3{
+    text-align:right;
+}
+.md_appel_offre .section-title h2::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+    height: 1px;
+    width: 100px;
+    background: transparent;
+}
+.md_appel_offre .section-title h2::after {
+    content: "";
+    height: 7px;
+    width: 7px;
+    display: inline-block;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    margin-left: 10px;
+}
+.md_appel_offre .slick-slide img {
+    height: 90%;
+    min-height:180px;
+    max-height:240px;
+    width:160px;
+        object-fit: contain;
+}
+.md_appel_offre .content-appel-offre button{
+background-color:#fff;
+border-radius: 30px;
+color:#4a52a1;
+font-weight: bold;
+position:absolute;
+bottom:7%;
+}
+[dir="rtl"] .md_appel_offre .content-appel-offre button{
+    text-align:right;
+    right:0;
+}
+.md_appel_offre .section-title {
+    margin-top: 0 !important;
+}
+.appel_offre {padding:5vh 10vh;}
+.md_appel_offre .slick-dots {
+    position: absolute;
+    bottom: 7% !important;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    left: 0;
+}
+.vh-5 {height:50vh;}
+#maroc { background-color: #fff; 
+background-image:url('../img/marc.png');
+background-repeat: no-repeat;
+background-position-x: right;
+background-size: contain;
+}
+.vh-5 .slick-dotted.slick-slider {
+    margin-bottom: unset !important;
+}
+.vh-5 .slick-slide {
+    padding-left: unset;
+}
+.color-white {color:#ffffff !important;}
+.size-17 {font-size:17px;}
+.content-appel-offre a {
+    color:#4a52a1 !important;
+}
+h2.maroc {
+    margin-top: 0px;
+font-size: 40px;
+font-weight: normal;
+padding:5vh 10vh 0vh 10vh;
+}
+[dir="rtl"] .md_appel_offre .section-title h2 {
+    text-align:right;
+}
+.h2maroc {height:26vh;}
+.btnmaroc {height:20vh; padding: 0vh 10vh;}
+@media screen and (max-width: 1600px) {
+.md_appel_offre .section-title h2 {
+    font-family: unset;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: unset;
+}
+.md_appel_offre .slick-slide img {
+    height: 85%;
+}
+.md_appel_offre .content-appel-offre button{
+bottom:10%;
+}
+.md_appel_offre .slick-dots {
+    bottom: 10% !important;
+}
+h2.maroc {
+    margin-top: 0px;
+    font-size: 34px;
+    font-weight: normal;
+    padding: 5vh 10vh 0vh 10vh;
+    line-height: 1.2;
+}
+}

@@ -1,0 +1,7 @@
+md_appel_offre:
+    path: '/appel_offres'
+    defaults:
+        _controller: 'Drupal\md_appel_offre\Controller\AppelOffreController::getOffres'
+        _title: 'Appel Offres'
+    requirements:
+        _access: 'TRUE'

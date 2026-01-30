@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains md_count.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_count_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_count module.
+    case 'help.page.md_count':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_count_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_count' => array(
+          'variables' => array('count' => NULL),
+          'template' => 'theme-md-count'
+      ),
+      'theme_md_count_interne' => array(
+          'variables' => array('count' => NULL),
+          'template' => 'theme-md-count-interne'
+      )
+  );
+}
+

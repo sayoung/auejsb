@@ -1,0 +1,131 @@
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper bg-interne" id="wrapper">
+
+
+		<!-- Header Area -->
+    <header id="header" class="justify-content-center header header-transparent sticky-header cr-border-bottom"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <div class="full-container d-none d-lg-block">
+        <div class="full-container first-section">
+<div class="row">
+    				<div class="col-3 header-inner justify-content-center">
+    				    
+					<a href="{{ url('<front>') }}" class="logo">
+						<img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}" class="logo-auer">
+					</a>
+					</div>
+<div class="col-8">
+    <div class="row">
+<div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/AUEJSB/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+   {{ page.search }}
+  </div>
+</div>
+<div class="col-12">
+    {{ page.menu }}
+</div>
+</div>
+ 
+</div>
+
+</div>
+      </div>
+      <div class="mobile-menu-wrap d-block d-lg-none">
+        <div class="container">
+          <div class="mobile-menu">
+            <a href="{{ url('<front>') }}" class="logo">
+						<img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}" class="logo-auer">
+					</a>
+          </div>
+        </div>
+      </div>
+    </header>
+		
+		<!-- Banner Area -->
+
+
+
+	<div class="full-container">
+        <img class="d-block w-100 tt_ff_img" src="{{ base_path ~ directory }}/images/interne.jpg" alt="darrafia">
+        <h2 class="tt_ff">  {{ title }}</h2>
+      </div>
+
+
+
+		<!--// Banner Area -->
+		</div>
+		<div class="full-container bg "  id="interne">
+		<div class="row justify-content-center margin-rl">
+
+    <div class="col-12 col-xl-12 " id="interne_content">
+	<div class="w-100">
+      <div class="pd-unset" id="content-contact-quote">
+<div class="leyton-quotes pd-unset "> 
+
+<div class="col-10 ">
+        <div class="row ">
+	 {{ drupal_entity('webform', 'contact') }}
+	 </div>
+    </div>
+</div>
+</div>
+<div class="row" style="position:relative;">
+<div style="width: 100%;">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1714.2955805417919!2d-8.49470091490145!3d33.231502903092526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda91f429493eb8b%3A0x38f02239c3aeb419!2sAgence%20Urbaine%20d&#39;El%20Jadida-Sidi%20Bennour!5e1!3m2!1sfr!2sma!4v1582827652145!5m2!1sfr!2sma" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</div>
+<div class="contact-uk-color-w">
+<div class="col-md-12 conatct-uk-2">
+<div class="row" style="padding-bottom: 20px;">
+		       <div class="col-md-1 col-sm-1 col-xs-1"><i class="fas fa-map-marker-alt"></i></div>
+           <div class="col-md-11  col-sm-11 col-xs-10" style="font-size: 17px;"> El Jadida </br> Avenue Bir Anzarane, Résidence Al Manar    BP : 3238 </div>
+           </div>
+		   <div class="row" style="padding-bottom: 20px;">
+		       <div class="col-md-1 col-sm-1 col-1"><i class="fas fa-phone"></i></div>
+           <div class="col-md-11  col-sm-11 col-10" style="font-size: 17px;padding-top: 6px;">05-23-37-00-61 / 34-06-28</div>
+           </div>
+           <div class="row" style="padding-bottom: 20px;">
+		       <div class="col-md-1 col-sm-1 col-1"><i class="fas fa-fax"></i></div>
+           <div class="col-md-11  col-sm-11 col-10" style="font-size: 17px;padding-top: 6px;">05-23-37-00-63</div>
+           </div>
+</div>
+</div>
+
+    </div>
+	</div>
+  </div>
+   </div>
+
+			 <div class="space-h"></div>
+	<footer class="footer container-full  slide-wrap">
+
+		<div class="footer-relative">
+            <div class="menu-footer">
+                <div class="menu-bas">
+
+ {{ page.menu_footer }}
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="copyright">
+          {{ site_slogan }}
+        </div>
+
+	</footer>
+</body>
+<style>
+    #interne {
+    padding-top: 0px !important;
+}
+    
+</style>

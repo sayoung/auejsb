@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains md_menu.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_menu_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_menu module.
+    case 'help.page.md_menu':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: md menu for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_menu_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_menu_hp' => array(
+	  'variables' => array('nodes' => NULL),
+      'template' => 'theme-md-menu-hp'
+      ),
+  );
+}

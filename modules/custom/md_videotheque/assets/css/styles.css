@@ -1,0 +1,30 @@
+.modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+  }
+
+
+
+.modal-body {
+  position:relative;
+  padding:0px;
+}
+.close {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
+}
+.video {
+	background-color:#9cc4de;
+	padding: 32px 28px;
+}
+.video h3 {
+	font-family: "dinpro",sans-serif;
+font-size: 26px;
+font-weight: normal;
+color: #6c89c3; }

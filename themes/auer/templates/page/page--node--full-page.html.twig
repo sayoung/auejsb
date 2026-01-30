@@ -1,0 +1,102 @@
+<body>
+	<!-- Main wrapper -->
+	<div class="wrapper bg-interne" id="wrapper">
+
+
+		<!-- Header Area -->
+    <header id="header" class="justify-content-center header header-transparent sticky-header cr-border-bottom">
+      <div class="full-container d-none d-lg-block">
+        <div class="full-container first-section">
+<div class="row">
+    				<div class="col-3 header-inner justify-content-center">
+    				    
+					<a href="{{ url('<front>') }}" class="logo">
+						<img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}" class="logo-auer">
+					</a>
+					</div>
+<div class="col-8">
+    <div class="row">
+<div class="col-12">
+
+  <div class=" fs_icon">
+       
+       {{ page.langue }}
+    <a target="_blank" href="{{ url('<front>') }}/form/contact"><span class="icon"><i class="fas fa-envelope"> </i></span></a>
+    <a target="_blank" href="https://twitter.com/AUEJSB"><span class="icon"><i class="fab fa-twitter-square"></i></span></a>
+    <a target="_blank" href="https://www.facebook.com/AUEJSB/"><span class="icon"><i class="fab fa-facebook-f"> </i></span></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCfiJv8-VSXdIo4sS6y0vJlA"><span class="icon"><i class="fab fa-youtube"> </i></span></a>
+    {{ page.panier }}
+   {{ page.search }}
+  </div>
+</div>
+<div class="col-12">
+    {{ page.menu }}
+</div>
+</div>
+ 
+</div>
+
+</div>
+      </div>
+      <div class="mobile-menu-wrap d-block d-lg-none">
+        <div class="container">
+          <div class="mobile-menu">
+            <a href="{{ url('<front>') }}" class="mobile-logo">
+              <img src="{{ base_path ~ directory }}/images/auejsb-{{ cur_language }}.png" alt="{{ site_slogan }}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+		<!--// Header Area -->
+
+				<!-- Banner Area -->
+
+{% set has_breadcrumb = '' %}
+
+	<div class="full-container mob-relative">
+        {% if page.breadcrumbs %}
+	   	{% set has_breadcrumb = ' has-breadcrumb' %}
+			<div class="tt_ff">
+				{{ page.breadcrumbs }}
+			</div>
+		{% endif %}
+      </div>
+
+
+
+		<!--// Banner Area -->
+
+		</div>
+		<div class="full-container bg "  id="interne">
+		<div class="row justify-content-center margin-rl">
+    <div class="col-12 col-xl-12  " id="interne_content">
+	<div class="w-100">
+      {{ page.content }}
+    </div></div>
+  </div>
+   </div>
+   	 <div class="space-h"></div>
+	<footer class="footer container-full  slide-wrap">
+
+		<div class="footer-relative">
+            <div class="menu-footer">
+                <div class="menu-bas">
+
+ {{ page.menu_footer }}
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="copyright">
+          {{ site_slogan }}
+        </div>
+
+	</footer>
+</body>
+
+
+	

@@ -1,0 +1,11 @@
+name: Barcode
+type: module
+description: Provides a barcode field and related formatters for Drupal 8
+package: Fields
+# core: 8.x
+
+# Information added by Drupal.org packaging script on 2018-01-03
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'barcode'
+datestamp: 1514950687

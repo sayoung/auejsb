@@ -1,0 +1,55 @@
+pub.content:
+  path: '/publication' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getPubs' 
+    _title: 'Publications'
+  requirements: 
+    _permission: 'access content'
+
+magazine.content:
+  path: '/publication/magazine-de-l-agence' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getMagazine' 
+    _title: 'Magazine de l’agence'
+  requirements: 
+    _permission: 'access content'
+
+ressources.content:
+  path: '/publication/ressources-documentaires' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getOldresource' 
+    _title: 'Ressources documentaires'
+  requirements: 
+    _permission: 'access content'
+ 
+indicateurs.content:
+  path: '/territoire/atlas-cartographique' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getIndicateurs' 
+    _title: 'les indicateurs territoriaux'
+  requirements: 
+    _permission: 'access content'
+
+rapport.content:
+  path: '/publication/rapport-d-activite' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getRapport' 
+    _title: 'Rapport d’activité'
+  requirements: 
+    _permission: 'access content'
+    
+brochures.content:
+  path: '/publication/brochures-et-guide' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getBrochures' 
+    _title: 'brochures et guide'
+  requirements: 
+    _permission: 'access content'
+    
+chart.content:
+  path: '/publication/Chartes-de-fonctionnement' 
+  defaults: 
+    _controller: 'Drupal\md_publication\Controller\PubsController::getChart' 
+    _title: 'Chartes de fonctionnement'
+  requirements: 
+    _permission: 'access content'

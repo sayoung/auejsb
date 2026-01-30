@@ -1,0 +1,41 @@
+<!-- Blog Area -->
+ {% set lang = cur_lang %}
+<section class="md_appel_offre" id="md_appel_offre">
+    
+ 
+    <main class="appel_offre">
+	<div class="section-title">
+								<h2>{% trans %}Publications{% endtrans %}</h2>
+							</div>
+	
+	  <div class="cont_appel_offre multiple-items-offrs{% if lang == "ar" %}-rtl{% endif %}" style="">
+    {% for node in nodes %}
+	<div class="content-appel-offre">
+	    <div class="row">
+	    
+	    <div class="col-md-3 col-12">
+	        <img src="{{ file_url(node.field_image_slider.entity.fileuri) }}" alt="auejsb" />
+	       </div> 
+ <div class="col-md-8 col-12">
+     {% if node.hastranslation(lang) %}
+                   {% set text = node.translation(lang).title.0.value|render|striptags %}
+				    
+      <h3 class="color-white">{{ text|length > 70 ? text|slice(0, 70) ~ '...' : text }}</h3>
+     {% set body = node.translation(lang).body.0.value|render|striptags %}
+				    
+      <div class="size-17 color-white">{{ body|length > 70 ? body|slice(0, 70) ~ '...' : body }}</div>
+      <button class="btn"><a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{% trans %} en savoir plus {% endtrans %}</a></button>
+	   {% else %}
+     <h2>No translation</h2>
+    {% endif %}
+       
+	  
+    </div> 
+    </div> 
+    </div>
+	{% endfor %}
+  </div>
+
+
+   </main>   
+</section>

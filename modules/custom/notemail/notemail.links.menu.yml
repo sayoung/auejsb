@@ -1,0 +1,11 @@
+enote.admin:
+  title: 'Paramètres E-note '
+  description: 'Synchroniser les E-prestation AUST'
+  parent: maps.admin_maps
+  route_name: notemail.admin_smsemail
+
+document.admin_document:
+  title: 'E-document'
+  description: 'Synchroniser les E-prestation AUST'
+  parent: maps.admin_maps
+  route_name: document.admin_document

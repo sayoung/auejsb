@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains md_videotheque.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_videotheque_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_videotheque module.
+    case 'help.page.md_videotheque':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Video for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_videotheque_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_videotheque_hp' => array(
+          'variables' => array('node' => NULL),
+          'template' => 'theme-md-videotheque-hp'
+      ),
+      'theme_md_video_page' => array(
+          'variables' => array('nodes' => NULL),
+          'template' => 'theme-md-video-page'
+      ),
+  );
+}

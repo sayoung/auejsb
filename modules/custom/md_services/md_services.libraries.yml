@@ -1,0 +1,13 @@
+md-services-hp:
+  version: 1.x
+  css:
+    theme:
+      assets/css/styles.css: {}
+  js:
+    assets/js/script.js: {}
+
+md-services-interne:
+  version: 1.x
+  css:
+    theme:
+      assets/css/style-inerne.css: {}

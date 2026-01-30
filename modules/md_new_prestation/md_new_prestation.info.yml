@@ -1,0 +1,7 @@
+name: Agence UUrbaine prestation
+type: module
+description: Module for insert  E-prestation in Website.
+
+core: 8.x
+package: Custom
+

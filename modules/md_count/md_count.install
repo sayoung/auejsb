@@ -1,0 +1,24 @@
+<?php
+
+function md_count_schema() {
+  $schema['md_count'] = array(
+    'fields' => array(
+      'id'=>array(
+        'type'=>'serial',
+        'not null' => TRUE,
+      ),
+      'service'=>array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => false,
+      ),
+	  'value'=>array(
+        'type' => 'serial',
+        'length' => 11,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}

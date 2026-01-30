@@ -1,0 +1,253 @@
+<?php
+
+/**
+ * @file
+ * Contains notemail.module..
+ */
+//require_once '/home/auejsb/public_html/vendor/autoload.php';
+//require_once 'D:\xampp\htdocs\aust5\vendor\autoload.php';
+//require __DIR__ . '/vendor/autoload.php';
+use Twilio\Rest\Client;
+use Drupal\notemail\Helper\Helper;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\Core\Site\Settings;
+use Drupal\KernelTests\KernelTestBase;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\commerce_product\Entity\ProductInterface;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+use Drupal\user\UserRoleHelperInterface;
+
+/**
+ * Implements hook_entity_presave().
+ */
+function notemail_commerce_product_presave(ProductInterface $product){
+  switch ($product->bundle()) {
+    case 'e_prestation':
+        drupal_set_message( "Title (" . $product->getTitle() . ") has bein saved!");
+     break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for user entities.
+ 
+function notemail_user_insert(UserInterface $user) {
+    $rid = "client";
+
+  // Check if the current page URL is the registration page
+  $current_url = $_SERVER['REQUEST_URI'];
+  if ($current_url == "/fr/user/register") {
+        $user = User::load($user->id());
+        $user->addRole($rid);
+        $user->activate();
+        $user->save();
+  }
+
+
+
+}
+*/
+
+/**
+ * Implements hook_entity_presave().
+ */
+ /*
+function notemail_node_presave(NodeInterface $node) {
+  
+}
+*/
+/**
+ * Implements hook_help().
+ */
+function notemail_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the notemail module.
+    case 'help.page.notemail':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('send an email programmatically After note creation') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+/*	$sid    = "AC86884e2129374df598aec2c902f6ef3c";
+$token  = "5e2391f2bcd7884d595544f330e8362e";
+$twilio = new Client($sid, $token);
+
+$message = $twilio->messages
+                  ->create($entity->get('field_phone_number')->value, // to
+                           array("from" => "+12015904816", "body" => "Agence urbaine de Skhrate-Témara a reçu votre demande. Votre code de Suivi en ligne de la note de renseignements est :" . $entity->get('field_uuid')->value . " . Merci de votre visite, www.aust.ma " . $entity->get('moderation_state')->target_id )
+                  );
+}*/
+function notemail_node_presave(Drupal\node\NodeInterface $node) {
+	if (($node->get('moderation_state')->target_id ) === 'comptabilite' || ($node->get('moderation_state')->target_id ) === 'dispatcheur' || ($node->get('moderation_state')->target_id ) === 'to_client' || ($node->get('moderation_state')->target_id ) === 'traitement' || ($node->get('moderation_state')->target_id ) === 'validation' || ($node->get('moderation_state')->target_id ) === 'annulation' )  {
+$node->set('field_cheking', 0);
+}
+if (($node->get('moderation_state')->target_id ) === 'checking' )  {
+$node->set('field_cheking', 1);
+// Helper::sendSMS($node->get('field_phone_number')->value,$node->get('field_uuid')->value );
+// Helper::sendMail($node->get('field_email')->value, $node->get('field_uuid')->value, 'E-note',$node->get('field_statut_foncier')->value);
+}
+ // $node->set('field_cheking', 0);
+}
+function notemail_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+ 
+ if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'note')) {
+    return;
+  }
+ // Helper::sendSMS($entity->get('field_phone_number')->value, $entity->get('moderation_state')->target_id );
+ 
+ 
+ 
+ 
+if (($entity->get('moderation_state')->target_id ) === 'to_client') {
+	// Helper::sendSMSFinal($entity->get('field_phone_number')->value,$entity->get('field_uuid')->value );
+	// Helper::sendMailFinal($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note',file_create_url($entity->field_e_node->entity->getFileUri()), $entity->get('field_references_foncieres')->value);
+	// Helper::sendMailFinal_cci($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note',file_create_url($entity->field_e_node->entity->getFileUri()),file_create_url($entity->field_extrait->entity->getFileUri()),file_create_url($entity->field_regelement->entity->getFileUri()), $entity->get('field_nom')->value, $entity->get('field_prenom')->value);
+}
+if (($entity->get('moderation_state')->target_id ) === 'archived') {
+//	Helper::sendSMSAnnulerpaiement($entity->get('field_phone_number')->value,$entity->get('field_uuid')->value );
+//	Helper::sendMailAnnulerpaiement($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note');
+//	Helper::sendMailAnnulerpaiement_cci($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note', $entity->get('field_nom')->value, $entity->get('field_prenom')->value  );
+}  
+if (($entity->get('moderation_state')->target_id ) === 'en_echange') {
+	// Helper::sendSMSFinal($entity->get('field_phone_number')->value,$entity->get('field_uuid')->value );
+	// Helper::sendMailEnEchange($entity->get('field_email')->value, $entity->get('field_uuid')->value, $entity->get('field_nom')->value, $entity->get('field_prenom')->value , 'E-note',$entity->get('field_references_foncieres')->value,$entity->get('field_observations')->value);
+	// Helper::sendMailFinal_cci($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note',file_create_url($entity->field_e_node->entity->getFileUri()),file_create_url($entity->field_extrait->entity->getFileUri()),file_create_url($entity->field_regelement->entity->getFileUri()), $entity->get('field_nom')->value, $entity->get('field_prenom')->value);
+}
+}
+
+/**
+ * Implements hook_mail().
+ */
+function notemail_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+   $config = \Drupal::config('notemail.settings');
+   $ccmail = $config->get('emailcci');
+   $cci_echange = "ahmedazzeddine@auejsb.ma";
+
+  switch ($key) {
+    case 'create_article':
+      $message['from'] =  "noreply@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      $message['body'][] = $params['message'];
+	//  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $ccmail;  
+      break;
+    case 'send_note':
+      $message['from'] =  "noreply@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      $message['body'][] = $params['message'];
+	//  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $ccmail;  
+          break;
+          
+    case 'echange_article':
+      $message['from'] =  "contact@auejsb.ma" ;//\Drupal::config('system.site')->get('mail');
+     // $message['subject'] = t('@title', array('@title' => $params['node_title']), $options);
+	  $message['format'] = 'text/html';
+	  $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed'; 
+      $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+      $message['headers']['X-Mailer'] = 'Drupal 20';
+      //$message['body'][] = $params['message'];
+	  $message['headers']['Bcc'] = 'dardari.mourad@gmail.com';
+	  $message['headers']['Cc'] = $cci_echange;  
+      break;
+  }
+}
+
+
+/**
+ * Implements hook_entity_insert().
+ */
+function notemail_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+
+  if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'note')) {
+    return;
+  }
+
+ 
+  $mailManager = \Drupal::service('plugin.manager.mail');
+
+
+	
+	//Helper::sendMail_cci($entity->get('field_email')->value, $entity->get('field_uuid')->value, 'E-note', $entity->get('field_nom')->value, $entity->get('field_prenom')->value );
+
+
+}
+
+
+function notemail_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+   $user = \Drupal::currentUser();
+   $uid = \Drupal::currentUser()->id();
+   $roles = $user->getRoles();
+  // $node = \Drupal\node\NodeInterface;
+   $node = $form_state->getFormObject()->getEntity();
+   
+  // kint($form['field_e_node']['widget'][0]['#required']);
+//         exit;
+   // $message = $form['field_e_node']['widget'][0]['value']['#required'];
+    //drupal_set_message($message, 'error');
+   // \Drupal::logger('notemail')->error($message);
+   if  (($node->get('moderation_state')->target_id ) === 'validation' || ($node->get('moderation_state')->target_id ) === 'to_client' )  {
+      
+        /* for text field type value required false*/
+      //  kint($entity);
+        // exit;
+	$form['field_e_node']['widget'][0]['#required'] = TRUE;
+	
+	
+    }
+$form['#validate'][] = 'notemail_form_node_form_validate';
+}
+
+  // Define the custom validate function
+function notemail_form_node_form_validate($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
+   $triggeringElement = $form_state->getTriggeringElement();
+
+  if ($triggeringElement['#value']) {
+
+    if ($triggeringElement['#value'] == "Enregistrer et En échange") {
+      $motif_value = $form_state->getValue('field_observations');
+      if (isset($motif_value[0]['value']) && empty($motif_value[0]['value'])) {
+        $form_state->setErrorByName('field_observations', t('Il est nécessaire de remplir le champ Observations pour transférer la demande dans l\'espace échange.'));
+      }
+    }
+  } else {
+    \Drupal::logger('notemail')->notice('Triggering element is NULL');
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+
+function notemail_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_nodes_ech' => array(
+          'variables' => array('nodes_ech' => NULL),
+          'template' => 'theme-nodes-ech'
+      ),
+  );
+}

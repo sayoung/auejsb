@@ -1,0 +1,11 @@
+md_services.admin:
+  title: 'E-services'
+  description: 'Configure custom addrress mail'
+  parent: md_services.display_table_controller_display
+  route_name: md_services.admin
+
+md_services.display_table_controller_display:
+  title: 'E-services list'
+  description: 'la liste des e-services'
+  parent: maps.admin_maps
+  route_name: md_services.display_table_controller_display

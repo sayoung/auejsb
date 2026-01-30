@@ -1,0 +1,40 @@
+
+
+<div class="chartContainer">
+    {% for node in nodes %}
+    {% set text = node.field_categorie_auer.0.value|render|striptags %}
+     {% if text == "1" %}
+       <div class="bossFigure">
+    <div class="chartModuleBoss">
+      <img class="chartImageBoss" src="{{ file_url(node.field_team_image.entity.fileuri) }}" alt="{{ text }}">
+      <span class="chartName">{{ node.field_team_name.0.value }}</span>
+      <hr class="chartLine">
+      <span class="chartTitle">{{ node.field_team_position.0.value }}</span>
+      <span class="chartTitle">{{ node.field_team_email.0.value }}</span>
+    </div>
+  </div>
+       {% endif  %}
+
+  {% endfor %}
+  <div class="peopleFigures">
+    <div class="chartGrid">
+      
+      
+    {% for node in nodes %}
+    {% set text = node.field_categorie_auer.0.value|render|striptags %}
+     {% if text != "1" %}
+      <div class="chartModule">
+        <span class="chartName">{{ node.field_team_name.0.value }}</span>
+        <hr class="chartLine">
+        <span class="chartTitle">{{ node.field_team_position.0.value }}</span>
+        <span class="chartTitle">{{ node.field_team_email.0.value }}</span>
+        <img class="chartImage" src="{{ file_url(node.field_team_image.entity.fileuri) }}" alt="{{ node.label }}">
+      </div>
+      {% endif  %}
+      {% endfor %}
+     
+
+    </div>
+  </div>
+</div>
+

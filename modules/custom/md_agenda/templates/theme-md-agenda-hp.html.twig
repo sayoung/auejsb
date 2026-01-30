@@ -1,0 +1,178 @@
+<!-- Grid row -->
+<div class="row accordion-gradient-bcg d-flex justify-content-center p-0">
+
+  <!-- Grid column -->
+  <div class="col-md-12 ">
+
+    <!--Accordion wrapper-->
+    <div class="accordion md-accordion accordion-2" id="accordionEx7" role="tablist"
+      aria-multiselectable="true">
+
+      <!-- Accordion card -->
+      <div class="card">
+
+        <!-- Card header -->
+        <div class="card-header rgba-stylish-strong z-depth-1 mb-1" role="tab" id="heading1">
+          <a data-toggle="collapse" data-parent="#accordionEx7" href="#collapse1" aria-expanded="true"
+            aria-controls="collapse1">
+            <h5 class="mb-0 white-text text-uppercase font-thin">
+              {% trans %}Agenda{% endtrans %} <i class="fas fa-angle-down rotate-icon"></i>
+            </h5>
+          </a>
+        </div>
+
+        <!-- Card body -->
+        <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1"
+          data-parent="#accordionEx7">
+          <div class="card-body mb-1 white-text">
+         
+											<ul>
+											   {% set lang = cur_lang %}
+{% for node in nodes %}  
+{% if node.bundle == "md_agenda" %}
+{% set MM = node.field_date.value|date('U')|date("M") %}
+										
+												<li>											
+													<a href="{{ path('entity.node.canonical', {'node': node.id}) }}" role="link">
+													<div class="row">
+														<div class="col-1 col-m-1 col-s-1">
+															<span>
+																										
+																<strong>{{ node.field_date.value|date('U')|date("d") }}</strong> 
+																{{ MM|trans }}															</span>
+														</div>
+														<div class="col-10 col-m-10 col-s-10">
+														
+													  		{% if node.hastranslation(lang) %}
+    <p>{{ node.translation(lang).label }}</p>
+    {% else %}
+    <p>No translation<p/>
+    {% endif %}
+													  	</div>
+													</div>
+													</a>
+												</li>
+												{% endif %}{% endfor %}
+											</ul>
+											<a href="{{ url('<front>') }}/evenement" class="view-more" role="link">{% trans %} Plus d'évènement {% endtrans %}</a>
+
+          </div>
+        </div>
+      </div>
+      <!-- Accordion card -->
+
+      <!-- Accordion card -->
+      <div class="card">
+
+        <!-- Card header -->
+        <div class="card-header rgba-stylish-strong z-depth-1 mb-1" role="tab" id="heading2">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx7" href="#collapse2"
+            aria-expanded="false" aria-controls="collapse2">
+            <h5 class="mb-0 white-text text-uppercase font-thin">
+              {% trans %}Appels d'offres{% endtrans %} <i class="fas fa-angle-down rotate-icon"></i>
+            </h5>
+          </a>
+        </div>
+
+        <!-- Card body -->
+        <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2"
+          data-parent="#accordionEx7">
+           <div class="card-body mb-1 white-text">
+         
+											<ul>
+											   {% set lang = cur_lang %}
+{% for node in nodes %}  
+{% if node.bundle == "appel_d_offre" %}
+{% set MM = node.field_date.value|date('U')|date("M") %}
+										
+												<li>											
+													<a href="{{ path('entity.node.canonical', {'node': node.id}) }}" role="link">
+													<div class="row">
+														<div class="col-1 col-m-1 col-s-1">
+															<span>
+																										
+																<strong>{{ node.field_date.value|date('U')|date("d") }}</strong> 
+																{{ MM|trans }}															</span>
+														</div>
+														<div class="col-10 col-m-10 col-s-10">
+														
+													  		{% if node.hastranslation(lang) %}
+    <p>{{ node.translation(lang).label }}</p>
+    {% else %}
+    <p>No translation<p/>
+    {% endif %}
+													  	</div>
+													</div>
+													</a>
+												</li>
+												{% endif %}{% endfor %}
+											</ul>
+											<a href="{{ url('<front>') }}/avis-annonces/appel_a_doffres" class="view-more" role="link">{% trans %} Plus d'Appels d'Offres {% endtrans %}</a>
+
+          </div>
+        </div>
+      </div>
+      <!-- Accordion card -->
+
+      <!-- Accordion card -->
+      <div class="card">
+
+        <!-- Card header -->
+        <div class="card-header rgba-stylish-strong z-depth-1 mb-1" role="tab" id="heading3">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx7" href="#collapse3"
+            aria-expanded="false" aria-controls="collapse3">
+            <h5 class="mb-0 white-text text-uppercase font-thin">
+               {% trans %}Appels à candidature{% endtrans %} <i class="fas fa-angle-down rotate-icon"></i>
+            </h5>
+          </a>
+        </div>
+
+        <!-- Card body -->
+        <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3"
+          data-parent="#accordionEx7">
+           <div class="card-body mb-1 white-text">
+         
+											<ul>
+											   {% set lang = cur_lang %}
+{% for node in nodes %}
+{% if node.bundle == "appel_a_candidatures" %}  
+
+{% set MM = node.field_date.value|date('U')|date("M") %}
+										
+												<li>											
+													<a href="{{ path('entity.node.canonical', {'node': node.id}) }}" role="link">
+													<div class="row">
+														<div class="col-1 col-m-1 col-s-1">
+															<span>
+																										
+																<strong>{{ node.field_date.value|date('U')|date("d") }}</strong> 
+																{{ MM|trans }}															</span>
+														</div>
+														<div class="col-10 col-m-10 col-s-10">
+														
+													  		{% if node.hastranslation(lang) %}
+    <p>{{ node.translation(lang).label }}</p>
+    {% else %}
+    <p>No translation<p/>
+    {% endif %}
+													  	</div>
+													</div>
+													</a>
+												</li>
+												{% endif %}
+												{% endfor %}
+											</ul>
+											<a href="{{ url('<front>') }}/avis-annonces" class="view-more" role="link">{% trans %} Plus d'Appels à condidature {% endtrans %}</a> 
+
+          </div>
+        </div>
+      </div>
+      <!-- Accordion card -->
+    </div>
+    <!--/.Accordion wrapper-->
+
+  </div>
+  <!-- Grid column -->
+
+</div>
+<!-- Grid row -->

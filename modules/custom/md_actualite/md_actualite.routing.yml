@@ -1,0 +1,7 @@
+example.content:
+  path: '/actualites' 
+  defaults: 
+    _controller: 'Drupal\md_actualite\Controller\ActualiteController::getActualites' 
+    _title: 'Les actualites'
+  requirements: 
+    _permission: 'access content' 

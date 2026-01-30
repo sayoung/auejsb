@@ -1,0 +1,5 @@
+name: Social Network
+type: module
+description: Social Network fields values.
+core: 8.x
+package: Custom

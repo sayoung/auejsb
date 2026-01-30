@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains md_social.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_social_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_social module.
+    case 'help.page.md_social':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Social Network fields values.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_social_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_social' => array(
+          'variables' => array('social' => NULL),
+          'template' => 'theme-md-social'
+      ),
+  );
+}

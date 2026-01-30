@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Contains aust_newsletter.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\aust_newsletter\Newsletter\Newsletter;
+
+/**
+ * Implements hook_help().
+ */
+function aust_newsletter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the aust_newsletter module.
+    case 'help.page.aust_newsletter':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Collect emails and send newsletter to newsletter.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function aust_newsletter_theme() {
+  // We use a template file to allow for translation of blocks of content.
+  // Therefore we need to add this content at the theming layer.
+  return [
+    'aust_newsletter_description' => [
+      'template' => 'description',
+      'variables' => [],
+    ],
+    'newsletter' => [
+      'template' => 'newsletter',
+      'variables' => array('form' => NULL),
+    ],
+  ];
+}
+
+

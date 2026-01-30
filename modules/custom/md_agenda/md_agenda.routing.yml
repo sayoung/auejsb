@@ -1,0 +1,7 @@
+md_agenda:
+    path: '/evenement'
+    defaults:
+        _controller: 'Drupal\md_agenda\Controller\EventController::getEvents'
+        _title: 'Agenda'
+    requirements:
+        _access: 'TRUE'

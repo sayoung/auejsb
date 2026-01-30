@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains md_org.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_org_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_org module.
+    case 'help.page.md_org':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_org_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_orgs_page' => array(
+          'variables' => array('nodes' => NULL),
+          'template' => 'theme-md-org'
+      ),
+  );
+}

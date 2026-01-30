@@ -1,0 +1,11 @@
+eprestation.admin_smsemail:
+  title: 'Paramètres E-prestation'
+  description: 'Configure custom addrress mail'
+  parent: maps.admin_maps
+  route_name: eprestation.admin_smsemail
+  
+eprestation.admin_eservices:
+  title: 'E-services'
+  description: 'e-services'
+  parent: system.admin_smsemail
+  route_name: eprestation.admin_eservices

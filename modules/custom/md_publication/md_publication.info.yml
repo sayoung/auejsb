@@ -1,0 +1,5 @@
+name: autar publication Homepage
+type: module
+description: md publication.
+core: 8.x
+package: Custom

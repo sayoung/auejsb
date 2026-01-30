@@ -1,0 +1,5 @@
+name: md count Homepage
+type: module
+description: count.
+core: 8.x
+package: Custom

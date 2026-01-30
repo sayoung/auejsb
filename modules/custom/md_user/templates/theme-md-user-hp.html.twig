@@ -1,0 +1,44 @@
+<!-- Blog Area -->
+ {% set lang = cur_lang %}
+<section class="cr-section blog-area " id="md_actu_auer">
+    <div class="row tp-cc">
+      <div class="col-lg-6">
+        <div class=" text-left">
+          <h2>{% trans %}  Actualités {% endtrans %}</h2>
+        </div>
+      </div>
+      <div class="col-lg-6 ">
+        <div class=" text-right">
+          <a href="{{ base_path }}{{ cur_lang }}/actualites" class="cr-btn cr-btn-white cr-btn-transparent cr-btn-small">
+            <h5>{% trans %}  + d’actualités {% endtrans %}</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+     {% set lang = cur_lang %}
+    <div class="row blogs-grid blog-slider-active{% if lang == "ar" %}-rtl{% endif %} slider-navigation-style-1">
+{% for node in nodes %}
+      <div class="col-lg-4">
+      <figure class="snip1208">
+        <img src="{{ file_url(node.field_service_images.entity.fileuri) }}" alt="{{ node.label }}"/>
+        <div class="date"><span class="day"> {% set MM = node.getCreatedTime|date('U')|date("M") %}{{ node.field_date.value|date('U')|date("d") }}</span><span class="month">{{ MM|trans }}</span></div><i class="ion-android-calendar"></i>
+        <figcaption>
+
+
+          
+                   {% if node.hastranslation(lang) %}
+                   {% set text = node.translation(lang).title.0.value|render|striptags %}
+          <h3>{{ text|length > 70 ? text|slice(0, 70) ~ '...' : text }}</h3>
+    
+    {% else %}
+     <h3>No translation</h3>
+    {% endif %}
+          
+          <button>{% trans %}  Lire la suite {% endtrans %}</button>
+        </figcaption><a href="{{ path('entity.node.canonical', {'node': node.id}) }}"></a>
+      </figure>
+      </div>
+{% endfor %}
+
+    </div>
+</section>

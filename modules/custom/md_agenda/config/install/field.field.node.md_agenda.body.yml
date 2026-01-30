@@ -1,0 +1,22 @@
+# field.field.node.md_agenda.body.yml
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.body
+        - node.type.md_agenda
+    module:
+        - text
+id: node.md_agenda.body
+field_name: body
+entity_type: node
+bundle: md_agenda
+label: Body
+description: 'More specific information about the agenda.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+    display_summary: true
+field_type: text_with_summary

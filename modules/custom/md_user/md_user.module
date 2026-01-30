@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains md_user.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function md_user_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_user module.
+    case 'help.page.md_user':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: actualites for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_user_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_user_hp' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL),
+          'template' => 'theme-md-user-hp'
+      ),
+      'theme_md_user_page' => array(
+          'variables' => array('nodes' => NULL,'cur_lang' => NULL),
+          'template' => 'theme-md-user-page'
+      ),
+  );
+}

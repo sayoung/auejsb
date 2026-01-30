@@ -1,0 +1,173 @@
+/******************************** new contact uk *******************/ 
+.con-uk-new {
+	min-height:  550px;
+	padding-left: 0;
+padding-right: 0;
+}
+.con-uk-info {
+	background-color:#89c541;
+	min-height:  550px !important;
+-webkit-clip-path: polygon(0 0, 100% 0%, 92% 100%, 0% 100%);
+clip-path: polygon(0 0, 100% 0%, 92% 100%, 0% 100%);
+
+}
+.con-uk-mokup {
+	
+}
+[dir="rtl"]  #content-contact-quote .offset-1 {
+    margin-right: 8.333333%;
+}
+.title-con-uk {
+	color:#fff;
+	padding: 11rem 19% 0 18% !important;
+}
+.title-con-uk h1{ 
+font-size: 2.9rem; 
+padding-bottom: 50px;
+}
+.title-con-uk p{ 
+font-size: 2rem; 
+}
+.conatct-uk-2 {
+	color:#fff;
+	font-size: 27px; 
+	padding: 9px 10px 10px 20px !important; 
+}
+.conatct-uk-2 > div > span > i {
+margin-right: 15px;
+}
+.con-uk-mokup {
+	position: relative;
+	margin-left: 0%;
+	margin-right: 0;
+padding-right: 0;
+}
+.con-uk-info {
+    position: absolute !important;
+    z-index: 2;
+}
+.img-con-uk {
+	width: 100%;height: 550px;object-fit: cover;
+}
+#img-canada-toronto img {
+	width: unset;
+}
+.contact-uk-color-w {
+    background-color: #89c541;
+    width: 420px;
+    min-height: 240px;
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+#webform-submission-contact-node-21385-add-form .webform-element--title-inline {
+	font-size: 1.7rem;
+}
+#webform-submission-contact-node-21385-add-form  .leyton-quotes {
+	margin-top: unset;
+}
+.pd-unset {
+	margin-top: unset !important;
+	padding-top:unset !important;
+}
+[id^="webform-submission-contact"] .col-md-6 {
+	font-size: 1.2rem;
+}
+[id^="webform-submission-contact"] .form-item-message {
+    padding-left: 15px;
+	font-size: 1.7rem;
+}
+.conatct-uk-2 a {color:white;}
+@media screen and (max-width: 768px) {
+.img-con-uk {
+    width: 125%;
+    height: 25rem;
+    object-fit: cover;
+}
+.con-uk-mokup {
+    position: relative;
+    margin-left: unset;
+    height: unset;
+}
+.title-con-uk {
+    color: #fff;
+    padding: 11rem 19% 5% 18% !important;
+}
+.con-uk-info {
+    position: unset;
+    z-index: 2;
+}
+.con-uk-info {
+    background-color: #f76411;
+    min-height:  550px !important;
+    -webkit-clip-path: unset;
+    clip-path: unset;
+}
+.con-uk-info {
+    position: unset !important;
+    z-index: 2;
+}
+#content-contact-quote .title-article h1 {
+
+    margin-left: 0 !important;
+    text-transform: uppercase;
+}
+	}
+.titre-usa-dnt {
+	font-size:22px !important;
+}
+@media screen and (max-width: 1680px) {
+	.title-con-uk {
+    color: #fff;
+    padding: 6rem 19% 0 18% !important;
+}
+.title-con-uk h1 {
+    font-size: 2.9rem;
+    padding-bottom: 20px;
+}
+}
+#content-contact-quote .title-article h1 {
+    font-size: 30px;
+    font-family: 'Cairo','NeuzeitS-BookHeavy';
+    letter-spacing: 1px;
+    color: 
+    #f76411;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0 auto 20px;
+        margin-top: 0px;
+    position: relative;
+    margin-top: 6%;
+    margin-left: 40%;
+    text-transform: uppercase;
+}
+
+#content-contact-quote .title-article h1::after {
+    position: absolute;
+    content: '';
+    height: 4px;
+    background-color: #f76411;
+    display: block;
+    width: 50px;
+    left: -60px;
+    top: 50%;
+}
+#webform-submission-contact-add-form .form-text {display: unset;}
+[id^="webform-submission-contact"] label {
+    display: inline;
+    padding-right: 0.5em;
+    font-family: DINNeuzeitGroteskStd-Light;
+}
+[id^="webform-submission-contact"] .col-md-6 {
+    border-bottom: 1px solid 
+    #e5e5e5;
+    line-height: 40px;
+    padding-top: 13px;
+    margin: 0 !important;
+        margin-top: 0px;
+    margin-top: 0px;
+    margin-top: 0px;
+    margin-top: 20px !important;
+    padding-left: 0;
+}

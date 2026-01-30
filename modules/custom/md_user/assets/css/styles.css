@@ -1,0 +1,250 @@
+/* FONT */
+/* Certaines fois, il se peut qu'on veuille mettre un lien sur le module correspondant à une personne.
+Pour ce faire : ajouter le lien via un attribut onclick sur la div chartModule tel que : 
+onclick="window.location.href='{lien}'""
+Puis on ajoute la classe "selectableChartModule" à la div chartModule
+*/
+@font-face {
+  font-family: printania;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-regular.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-regular.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-regular.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaBold;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-bold.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-bold.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-bold.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaInline;
+  font-display: swap;
+  font-weight: 700;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniainlineweb-regular.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniainlineweb-regular.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniainlineweb-regular.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaItalic;
+  font-display: swap;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniapetitserifweb-italic.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniapetitserifweb-italic.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniapetitserifweb-italic.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaSemiLight;
+  font-display: swap;
+  font-weight: lighter;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilight.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilight.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilight.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaSemiLightItalic;
+  font-display: swap;
+  font-weight: lighter;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilightitalic.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilightitalic.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-semilightitalic.woff?frz-v=14)
+      format("woff");
+}
+@font-face {
+  font-family: printaniaLight;
+  font-display: swap;
+  font-weight: lighter;
+  src: url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-light.eot?frz-v=14)
+      format("embedded-opentype"),
+    url(https://www.printempsfrance.com/fstrz/r/s/c/media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-light.woff.woff2?frz-v=14)
+      format("woff2"),
+    url(https://media.printemps.com/_ui/desktop/theme-printemps/dist/staticFonts/printania/printaniasansweb-light.woff?frz-v=14)
+      format("woff");
+}
+
+body {
+  background: #fbfbfb;
+}
+.chartH1 {
+    font-family: printaniaBold;
+    font-size: 1.5em;
+    line-height: 1.2;
+}
+
+.chartH2 {
+    font-family : printania;
+    font-size : 0.97em;
+}
+
+.chartH1Container {
+    margin : 3.2em 0 2em;
+}
+
+.chartH2Container {
+    margin : 1em 0;
+}
+
+.chartH1Container + .chartH2Container {
+    margin-top : 0;
+}
+
+.chartContainer {
+    display: grid;
+    grid-template-areas: 
+    "head content"
+    ". content";
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 490px 1fr;
+    grid-gap: 0px;
+    margin-top : 2em;
+}
+
+.bossFigure {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    grid-area: head;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    align-self: top;
+}
+
+.peopleFigures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+}
+
+.selectableChartModule{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .chartContainer {
+        grid-template-areas: "head" "content";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(150px, auto) 1fr minmax(150px, auto) auto;
+    }
+    .bossFigure {
+        margin: 1.5em 0 0 0;
+    }
+}
+
+.chartGrid {
+    /* Grid Fallback */
+    display: flex;
+    flex-wrap: wrap;
+    /* Supports Grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    grid-auto-rows: minmax(340px, auto);
+    grid-gap: 1.3em 0.4em;
+}
+
+.chartGrid .chartModule {
+    /* Demo-Specific Styles */
+    display: flex;
+    flex-flow: column;
+    background: white;
+    padding: 2.6em 1em 0 1em;
+    box-shadow: 0 0.16rem 0.188rem 0 rgba(70, 65, 83, 0.2);
+    /* Flex Fallback */
+    margin-left: 5px;
+    margin-right: 5px;
+    flex: 1 1 200px;
+}
+
+/* If Grid is supported, remove the margin we set for the fallback */
+
+@supports (display: grid) {
+    .chartGrid .chartModule {
+        margin: 0em 1em;
+    }
+}
+
+.chartModuleBoss {
+    /* Demo-Specific Styles */
+    display: flex;
+    flex-flow: column;
+    padding: 2.6em 1em 1em 1em;
+    background: white;
+    box-shadow: 0 0.16rem 0.188rem 0 rgba(70, 65, 83, 0.2);
+    align-self: top;
+    /* Flex Fallback */
+    margin-left: 5px;
+    margin-right: 5px;
+    flex: 1 1 330px;
+}
+
+/* If Grid is supported, remove the margin we set for the fallback */
+/* ecart droit entre cadre du boss et des autres était trop grand 
+@supports (display: grid) {
+    .chartModuleBoss {
+        margin: 0em 1em;
+    }
+}
+*/
+.chartModule .chartName, .chartModuleBoss .chartName {
+    font-family: printania;
+    font-size: 1.1em;
+    margin: 1em 0 0.65em;
+    line-height: 1.2;
+    font-weight: normal;
+    text-align: center;
+}
+
+.chartModule .chartLine, .chartModuleBoss .chartLine {
+    width: 2rem;
+    height: 0.25rem;
+    /*   border: 0.12rem solid #d10056; */
+    border: none;
+    background-color: #d10056;
+    margin: auto;
+}
+
+.chartModule .chartTitle, .chartModuleBoss .chartTitle {
+    font-family: printaniaSemiLight;
+    margin: 0.65em 0 1rem;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.chartModule .chartImage {
+    order: -1;
+    width: 7.5em;
+    height: 9.75em;
+    align-self: center;
+}
+
+.chartModuleBoss .chartImageBoss {
+    order: -1;
+    /* la photo du boss était trop petite
+    width: 11.0625em;
+    height: 13.3125em;
+    */
+    width : 168px;
+    align-self: center;
+}

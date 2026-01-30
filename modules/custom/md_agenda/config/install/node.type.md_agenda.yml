@@ -1,0 +1,14 @@
+# node.type.md_agenda.yml
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - md_agenda # This is the name of the module we're using for this example
+name: 'Agenda'
+type: md_agenda
+description: 'Content type that can be used to provide additional information on <em>Car Brands</em>'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

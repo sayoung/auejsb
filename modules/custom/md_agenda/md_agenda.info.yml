@@ -1,0 +1,5 @@
+name: Agenda Homepage
+type: module
+description: Agenda.
+core: 8.x
+package: Custom

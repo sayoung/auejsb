@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains md_slider.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\md_slider\Newsletter\Newsletter;
+
+/**
+ * Implements hook_help().
+ */
+function md_slider_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the md_slider module.
+    case 'help.page.md_slider':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Description: Slider for homepage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+function md_slider_theme($existing, $type, $theme, $path)
+{
+  return array(
+      'theme_md_slider' => array(
+          'variables' => array('sliders' => NULL,'cur_lang' => NULL),
+          'template' => 'theme-md-slider'
+      ),
+  );
+}

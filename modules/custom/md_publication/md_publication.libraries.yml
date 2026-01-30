@@ -1,0 +1,19 @@
+md-publication-hp:
+  version: 1.x
+  css:
+    theme:
+      assets/css/styles.css: {}
+  js:
+    assets/js/script.js: {}
+  dependencies:
+    - core/jquery
+
+md-pub-page:
+  version: 1.x
+  css:
+    theme:
+      assets/css/styles-interne.css: {}
+  js:
+    assets/js/script-interne.js: {}
+  dependencies:
+    - core/jquery

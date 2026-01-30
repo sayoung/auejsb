@@ -1,0 +1,14 @@
+maps.admin_maps:
+  path: '/admin/config/md_maps/details'
+  defaults:
+    _form: '\Drupal\md_maps\Form\BlocConfigForm'
+    _title: 'Config la cart'
+  requirements:
+    _permission: 'administer site configuration'
+maps.admin_details:
+  path: '/admin/config/md_maps/details'
+  defaults:
+    _form: '\Drupal\md_maps\Form\BlocConfigForm'
+    _title: 'Config la cart'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,22 +1,18 @@
-# Callback route for Cmi form payments.
 commerce_cmi.callback:
   path: '/commerce-cmi/callback'
   defaults:
     _controller: '\Drupal\commerce_cmi\Controller\CmiCallbackController::CmiCallback'
     _title: 'Cmi Callback'
   requirements:
-    _access: 'TRUE'
+    _permission: 'access content'
 
-
-# Callback route for Cmi form payments.
 commerce_cmi.senddata:
   path: '/commerce-cmi/senddata'
   defaults:
     _controller: '\Drupal\commerce_cmi\Controller\CmiCallbackController::CmiSendData'
     _title: 'chargement vers la page de paiement ...'
   requirements:
-    _access: 'TRUE'
-# OK route for Cmi form payments.
+    _permission: 'access content'
 
 commerce_cmi.ok:
   path: '/commerce-cmi/ok'
@@ -26,7 +22,6 @@ commerce_cmi.ok:
   requirements:
     _permission: 'access content'
 
-# Fail route for Cmi form payments.
 commerce_cmi.fail:
   path: '/commerce-cmi/fail'
   defaults:

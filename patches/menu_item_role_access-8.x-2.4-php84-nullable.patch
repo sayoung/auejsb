@@ -1,0 +1,26 @@
+diff --git a/menu_item_role_access.module b/menu_item_role_access.module
+index a388a4c..1448b95 100755
+--- a/menu_item_role_access.module
++++ b/menu_item_role_access.module
+@@ -95,7 +95,7 @@ function menu_item_role_access_form_menu_link_content_form_alter(&$form, FormSta
+  *
+  * We want to make sure that fields aren't being edited by those who shouldn't.
+  */
+-function menu_item_role_access_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
++function menu_item_role_access_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, ?FieldItemListInterface $items = NULL) {
+   if ($field_definition->getName() == 'menu_item_roles') {
+     if ($operation == 'edit' and $account->hasPermission('edit menu_item_role_access')) {
+       return AccessResult::allowed();
+diff --git a/src/MenuItemRoleAccessLinkTreeManipulator.php b/src/MenuItemRoleAccessLinkTreeManipulator.php
+index fded30e..e3a0840 100755
+--- a/src/MenuItemRoleAccessLinkTreeManipulator.php
++++ b/src/MenuItemRoleAccessLinkTreeManipulator.php
+@@ -50,7 +50,7 @@ class MenuItemRoleAccessLinkTreeManipulator extends DefaultMenuLinkTreeManipulat
+    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+    *   An implementation of the entity repository interface.
+    */
+-  public function __construct(AccessManagerInterface $access_manager, AccountInterface $account, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler = NULL, ConfigManagerInterface $config_manager, EntityRepositoryInterface $entity_repository) {
++  public function __construct(AccessManagerInterface $access_manager, AccountInterface $account, EntityTypeManagerInterface $entity_type_manager, ?ModuleHandlerInterface $module_handler, ConfigManagerInterface $config_manager, EntityRepositoryInterface $entity_repository) {
+     parent::__construct($access_manager, $account, $entity_type_manager, $module_handler);
+     $this->configManager = $config_manager->getConfigFactory();
+     $this->entityRepository = $entity_repository;

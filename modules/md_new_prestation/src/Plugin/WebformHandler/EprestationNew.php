@@ -22,6 +22,7 @@ use Drupal\md_new_prestation\Helper\Helper;
 use Drupal\Component\Serialization\Json;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\md_new_prestation\Helper\SurfaceAudit;
 
 
 
@@ -340,6 +341,11 @@ protected function executeAction(WebformSubmissionInterface $webform_submission)
     $variation->save();
     $product->addVariation($variation);
     $product->save();
+
+    $metric_used = ($field_type === 'Modification')
+      ? $surface_planchers_couverts_supplementaires_apres_modification
+      : $metrage_du_projet;
+    SurfaceAudit::logWebformCreate($product, $price['total'], $metric_used, $field_type);
     
     \Drupal::logger('md_new_prestation')->notice('Generated autorisation number @num for product @title', [
       '@num' => $new_autorisation_nbr,

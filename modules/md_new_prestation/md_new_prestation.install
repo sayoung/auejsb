@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for md_new_prestation.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function md_new_prestation_schema() {
+  $schema['md_new_prestation_audit_log'] = [
+    'description' => 'Audit log for instruction surface and price changes.',
+    'fields' => [
+      'aid' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary key.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Unix timestamp.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'User ID.',
+      ],
+      'username' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Username at time of change.',
+      ],
+      'product_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Commerce product ID.',
+      ],
+      'variation_id' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Commerce product variation ID.',
+      ],
+      'dossier' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Dossier number (field_ndeg_de_dossier).',
+      ],
+      'action' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Audit action code.',
+      ],
+      'summary' => [
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+        'description' => 'Short human-readable summary.',
+      ],
+      'details' => [
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+        'description' => 'JSON details (changes, values, prices).',
+      ],
+    ],
+    'primary key' => ['aid'],
+    'indexes' => [
+      'dossier' => ['dossier'],
+      'product_id' => ['product_id'],
+      'action' => ['action'],
+      'created' => ['created'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Create audit log table for existing installations.
+ */
+function md_new_prestation_update_8001() {
+  $schema = md_new_prestation_schema();
+  $table = 'md_new_prestation_audit_log';
+  $db_schema = \Drupal::database()->schema();
+  if (!$db_schema->tableExists($table)) {
+    $db_schema->createTable($table, $schema[$table]);
+  }
+}

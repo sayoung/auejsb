@@ -58,3 +58,11 @@ eprestation.admin_eservices:
     _title: 'Config SMS E-mail'
   requirements:
     _permission: 'administer site configuration'
+
+eprestation.admin_audit_log:
+  path: '/admin/config/eprestation/audit-log'
+  defaults:
+    _form: '\Drupal\md_new_prestation\Form\AuditLogForm'
+    _title: 'Journal audit surfaces / prix'
+  requirements:
+    _permission: 'administer site configuration'

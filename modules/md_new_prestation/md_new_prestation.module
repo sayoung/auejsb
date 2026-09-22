@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\md_new_prestation\Helper\Helper;
+use Drupal\md_new_prestation\Helper\SurfaceAudit;
 use Drupal\md_new_prestation\Eprestation\Eprestation;
 use Drupal\commerce_product\Entity\ProductInterface;
 
@@ -447,6 +448,11 @@ function md_new_prestation_commerce_product_access(EntityInterface $entity, $ope
  * Implements hook_entity_presave().
  */
 function md_new_prestation_entity_presave(EntityInterface $entity) {
+  // Audit trail: surface / type / nature / dossier changes.
+  SurfaceAudit::logProductChanges($entity);
+  // Audit trail: variation price changes (instruction).
+  SurfaceAudit::logVariationPriceChanges($entity);
+
   if ($entity->getEntityTypeId() === 'commerce_product' && $entity->bundle() === 'instruction') {
 
     // Empêcher ajout de reçu sans déclaration

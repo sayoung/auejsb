@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Install and update hooks for notemail branding corrections.
+ */
+
+/**
+ * Correct agency name: Nador / AUNADOR leftovers → El Jadida-Sidi Bennour (AUEJSB).
+ */
+function notemail_update_8001() {
+  module_load_include('module', 'notemail');
+
+  $target_name = "Agence Urbaine d'El Jadida-Sidi Bennour";
+  $wrong_needles = [
+    'Nador',
+    'AUNADOR',
+    'Driouch',
+    'Guercif',
+    'Beni Mellal',
+  ];
+
+  $site = \Drupal::configFactory()->getEditable('system.site');
+  $site_name = (string) $site->get('name');
+  foreach ($wrong_needles as $needle) {
+    if ($site_name !== '' && stripos($site_name, $needle) !== FALSE) {
+      $site->set('name', $target_name)->save();
+      break;
+    }
+  }
+
+  $config_keys = [
+    'notemail.settings' => ['footer1', 'footer2', 'subject'],
+    'd8mail.settings' => ['footer1', 'footer2', 'subject'],
+    'aust_eprestation.settings' => ['footer1', 'footer2', 'subject'],
+    'md_new_prestation.settings' => ['footer1', 'footer2', 'subject'],
+  ];
+
+  foreach ($config_keys as $config_name => $keys) {
+    $editable = \Drupal::configFactory()->getEditable($config_name);
+    $raw = $editable->getRawData();
+    if (empty($raw)) {
+      continue;
+    }
+    $changed = FALSE;
+    foreach ($keys as $key) {
+      $value = $editable->get($key);
+      if (!is_string($value) || $value === '') {
+        continue;
+      }
+      $new = _notemail_branding_replace_string($value);
+      if ($new !== $value) {
+        $editable->set($key, $new);
+        $changed = TRUE;
+      }
+    }
+    $footer1 = (string) $editable->get('footer1');
+    if ($footer1 === '' || _notemail_branding_is_wrong($footer1)) {
+      $editable->set('footer1', $target_name);
+      $changed = TRUE;
+    }
+    if ($changed) {
+      $editable->save();
+    }
+  }
+
+  // Drupal account emails (activation / registration) often embed [site:name]
+  // and may also contain hard-coded legacy agency names in stored templates.
+  $user_mail = \Drupal::configFactory()->getEditable('user.mail');
+  $user_raw = $user_mail->getRawData();
+  if (!empty($user_raw)) {
+    $changed = FALSE;
+    foreach ($user_raw as $mail_key => $mail_def) {
+      if (!is_array($mail_def)) {
+        continue;
+      }
+      foreach (['subject', 'body'] as $part) {
+        if (empty($mail_def[$part]) || !is_string($mail_def[$part])) {
+          continue;
+        }
+        $new = _notemail_branding_replace_string($mail_def[$part]);
+        if ($new !== $mail_def[$part]) {
+          $user_mail->set("$mail_key.$part", $new);
+          $changed = TRUE;
+        }
+      }
+    }
+    if ($changed) {
+      $user_mail->save();
+    }
+  }
+}

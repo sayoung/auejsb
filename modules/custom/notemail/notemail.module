@@ -125,6 +125,70 @@ if (($entity->get('moderation_state')->target_id ) === 'en_echange') {
 }
 
 /**
+ * Returns TRUE if a string still carries legacy wrong agency branding.
+ */
+function _notemail_branding_is_wrong($text) {
+  foreach (['Nador', 'AUNADOR', 'Driouch', 'Guercif', 'Beni Mellal'] as $needle) {
+    if (stripos((string) $text, $needle) !== FALSE) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Replace known wrong agency branding strings with AUEJSB naming.
+ */
+function _notemail_branding_replace_string($text) {
+  $map = [
+    'Agence Urbaine de Nador-Driouch-Guercif' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+    'Agence urbaine de Nador-Driouch-Guercif' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+    "L'Agence Urbaine de Nador-Driouch-Guercif" => "L'Agence Urbaine d'El Jadida-Sidi Bennour",
+    "l'Agence Urbaine de Nador-Driouch-Guercif" => "l'Agence Urbaine d'El Jadida-Sidi Bennour",
+    'AUNADOR' => 'AUEJSB',
+    "L'Agence Urbaine de Beni Mellal" => "L'Agence Urbaine d'El Jadida-Sidi Bennour",
+    'Agence Urbaine de Beni Mellal' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+  ];
+  return strtr((string) $text, $map);
+}
+
+/**
+ * Resolve email footer text, correcting legacy Nador branding when present.
+ */
+function _notemail_branding_footer($value, $fallback = "Agence Urbaine d'El Jadida-Sidi Bennour") {
+  $value = trim((string) $value);
+  if ($value === '' || _notemail_branding_is_wrong($value)) {
+    return $fallback;
+  }
+  return _notemail_branding_replace_string($value);
+}
+
+/**
+ * Implements hook_mail_alter().
+ *
+ * Ensures account activation and other Drupal mails do not keep Nador / AUNADOR
+ * branding when [site:name] or stored templates still contain legacy strings.
+ */
+function notemail_mail_alter(&$message) {
+  if (!empty($message['subject']) && is_string($message['subject'])) {
+    $message['subject'] = _notemail_branding_replace_string($message['subject']);
+  }
+  if (!empty($message['body']) && is_array($message['body'])) {
+    foreach ($message['body'] as $i => $part) {
+      if (is_string($part)) {
+        $message['body'][$i] = _notemail_branding_replace_string($part);
+      }
+      elseif (is_object($part) && method_exists($part, '__toString')) {
+        $message['body'][$i] = _notemail_branding_replace_string((string) $part);
+      }
+    }
+  }
+  if (!empty($message['params']['message']) && is_string($message['params']['message'])) {
+    $message['params']['message'] = _notemail_branding_replace_string($message['params']['message']);
+  }
+}
+
+/**
  * Implements hook_mail().
  */
 function notemail_mail($key, &$message, $params) {

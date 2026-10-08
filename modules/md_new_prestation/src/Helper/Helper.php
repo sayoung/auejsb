@@ -84,7 +84,7 @@ public static function sendMailFirst($email, $commune, $ndeg_dossier, $province,
         $key = 'create_product';
         $subject = "Validation de votre demande de paiement – Autorisations d’urbanisme";
         
-        $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+        $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
 
         // Construct email body
         $params['message'] = Markup::create("
@@ -124,11 +124,11 @@ public static function sendMailFirst($email, $commune, $ndeg_dossier, $province,
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -181,7 +181,7 @@ public static function sendMailDeclaration($email, $commune, $ndeg_dossier, $pro
         $key = 'create_product';
         $subject = "Validation de votre demande de paiement – Autorisations d’urbanisme";
         
-        $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+        $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
 
         // Construct email body
         $params['message'] = Markup::create("
@@ -221,11 +221,11 @@ public static function sendMailDeclaration($email, $commune, $ndeg_dossier, $pro
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -279,7 +279,7 @@ public static function sendMailRejet($email, $commune, $ndeg_dossier, $province,
         $key = 'rejet_product';
         $subject = "État de votre dossier N° : " . $ndeg_dossier;
         
-        $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+        $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
 
         // Construct email body
         $params['message'] = Markup::create("
@@ -319,11 +319,11 @@ public static function sendMailRejet($email, $commune, $ndeg_dossier, $province,
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -377,7 +377,7 @@ public static function sendMailFacturation($email, $commune, $ndeg_dossier, $pro
         $key = 'facturation_product';
         $subject = "Disponibilité de votre facture pour le dossier N° " . $ndeg_dossier;
         
-        $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+        $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
 
         // Construct email body
         $params['message'] = Markup::create("
@@ -417,11 +417,11 @@ public static function sendMailFacturation($email, $commune, $ndeg_dossier, $pro
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>

@@ -1,7 +1,7 @@
 name: auer
 type: theme
 base theme: classy
-description: 'ce project cree pour notre client Agence Urbaine d Errachidia-Midelt'
+description: 'Theme for Agence Urbaine d'El Jadida-Sidi Bennour (AUEJSB)'
 package: Core
 core_version_requirement: ^8 || ^9
 # version: VERSION

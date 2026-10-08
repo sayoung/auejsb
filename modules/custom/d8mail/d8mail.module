@@ -73,3 +73,38 @@ function d8mail_mail_alter(&$message) {
       break;
   }
 }
+
+// Branding helpers (shared with notemail when that module is available).
+if (!function_exists('_notemail_branding_is_wrong')) {
+  function _notemail_branding_is_wrong($text) {
+    foreach (['Nador', 'AUNADOR', 'Driouch', 'Guercif', 'Beni Mellal'] as $needle) {
+      if (stripos((string) $text, $needle) !== FALSE) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+}
+if (!function_exists('_notemail_branding_replace_string')) {
+  function _notemail_branding_replace_string($text) {
+    $map = [
+      'Agence Urbaine de Nador-Driouch-Guercif' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+      'Agence urbaine de Nador-Driouch-Guercif' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+      "L'Agence Urbaine de Nador-Driouch-Guercif" => "L'Agence Urbaine d'El Jadida-Sidi Bennour",
+      "l'Agence Urbaine de Nador-Driouch-Guercif" => "l'Agence Urbaine d'El Jadida-Sidi Bennour",
+      'AUNADOR' => 'AUEJSB',
+      "L'Agence Urbaine de Beni Mellal" => "L'Agence Urbaine d'El Jadida-Sidi Bennour",
+      'Agence Urbaine de Beni Mellal' => "Agence Urbaine d'El Jadida-Sidi Bennour",
+    ];
+    return strtr((string) $text, $map);
+  }
+}
+if (!function_exists('_notemail_branding_footer')) {
+  function _notemail_branding_footer($value, $fallback = "Agence Urbaine d'El Jadida-Sidi Bennour") {
+    $value = trim((string) $value);
+    if ($value === '' || _notemail_branding_is_wrong($value)) {
+      return $fallback;
+    }
+    return _notemail_branding_replace_string($value);
+  }
+}

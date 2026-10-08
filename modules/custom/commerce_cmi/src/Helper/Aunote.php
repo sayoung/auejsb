@@ -94,7 +94,7 @@ class Aunote {
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='https://auejsb.ma/themes/auer/images/auejsb-fr.png' >
+                                                        <img src='https://auejsb.ma/themes/auer/images/auejsb_1.jpg' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -144,11 +144,11 @@ class Aunote {
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>" . $config->get('footer1') . "</span>
+                                                                        <span style='font-size:8.5pt;'>" . \_notemail_branding_footer($config->get('footer1')) . "</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>" . $config->get('footer2') . "
+                                                                            <br>" . \_notemail_branding_footer($config->get('footer2'), '') . "
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -195,7 +195,7 @@ class Aunote {
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='https://auejsb.ma/themes/auer/images/auejsb-fr.png' >
+                                                        <img src='https://auejsb.ma/themes/auer/images/auejsb_1.jpg' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -222,11 +222,11 @@ class Aunote {
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>" . $config->get('footer1') . "</span>
+                                                                        <span style='font-size:8.5pt;'>" . \_notemail_branding_footer($config->get('footer1')) . "</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>" . $config->get('footer2') . "
+                                                                            <br>" . \_notemail_branding_footer($config->get('footer2'), '') . "
                                                                         </span>
                                                                     </font>
                                                                 </span>

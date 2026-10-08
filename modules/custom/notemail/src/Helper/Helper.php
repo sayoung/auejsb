@@ -48,14 +48,14 @@ public static function sendMail($to, $code, $title,$titre_foncier){
       $module = 'notemail';
       $key = 'create_article';
       $to = $to;
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $messageBody = "<html lang='en'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'> <title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
                                         <tbody>
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='. $logo .' >
+                                                        <img src='" . $logo . "' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -82,11 +82,11 @@ public static function sendMail($to, $code, $title,$titre_foncier){
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -154,14 +154,14 @@ public static function sendMailEnEchange($to, $code,$nom,$prenom, $title,$titre_
       $to = $to;
       	  $search  = array('[code]', '[nom]', '[prenom]','[titre_f]','[observations]');
 	  $replace = array($code , $nom, $prenom,$titre_foncier,$observations);
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $messageBody = "<html lang='en'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'> <title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
                                         <tbody>
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='. $logo .' >
+                                                        <img src='" . $logo . "' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -188,11 +188,11 @@ public static function sendMailEnEchange($to, $code,$nom,$prenom, $title,$titre_
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -260,14 +260,14 @@ public static function sendMailFinal($to, $code, $title,$note,$titre_foncier){
       $mailManager = \Drupal::service('plugin.manager.mail');
       $module = 'notemail';
       $key = 'send_note';
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $messageBody = "<html lang='en'><head><title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
                                         <tbody>
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='. $logo .' >
+                                                        <img src='" . $logo . "' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -298,11 +298,11 @@ public static function sendMailFinal($to, $code, $title,$note,$titre_foncier){
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -365,14 +365,14 @@ public static function sendMailFinal($to, $code, $title,$note,$titre_foncier){
       $mailManager = \Drupal::service('plugin.manager.mail');
       $module = 'notemail';
       $key = 'create_article';
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $params['message'] = "<html lang='en'><head><title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
                                         <tbody>
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='. $logo .' >
+                                                        <img src='" . $logo . "' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -418,11 +418,11 @@ public static function sendMailFinal($to, $code, $title,$note,$titre_foncier){
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -488,14 +488,14 @@ public static function sendMailAnnulerpaiement($to, $code, $title){
       $mailManager = \Drupal::service('plugin.manager.mail');
       $module = 'notemail';
       $key = 'create_article';
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $params['message'] = "<html lang='en'><head><title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
                                         <tbody>
                                             <tr style='height:30pt;' height='50'>
                                                 <td valign='top'>
                                                     <div style='margin:0;'>
-                                                        <img src='. $logo .' >
+                                                        <img src='" . $logo . "' >
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -523,11 +523,11 @@ public static function sendMailAnnulerpaiement($to, $code, $title){
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
@@ -560,7 +560,7 @@ public static function sendMailAnnulerpaiement_cci($to, $code, $title,$nom , $pr
 	  $config = \Drupal::config('notemail.settings');
       $mailManager = \Drupal::service('plugin.manager.mail');
       $module = 'notemail';
-      $logo = 'https://auejsb.ma/themes/auer/images/auejsb-fr.png';
+      $logo = 'https://auejsb.ma/themes/auer/images/auejsb_1.jpg';
       $key = 'create_article';
       $params['message'] = "<html lang='en'><head><title>  L'Agence Urbaine d'ElJadida Sidi Bennour </title></head><body><div>
                                     <table style='width:525pt;' cellspacing='0' cellpadding='0' border='0' width='875'>
@@ -606,11 +606,11 @@ public static function sendMailAnnulerpaiement_cci($to, $code, $title,$nom , $pr
                                                             <font size='3' face='Times New Roman,serif'>
                                                                 <span style='font-size:12pt;'>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
-                                                                        <span style='font-size:8.5pt;'>".$config->get('footer1')."</span>
+                                                                        <span style='font-size:8.5pt;'>".\_notemail_branding_footer($config->get('footer1'))."</span>
                                                                     </font>
                                                                     <font size='2' color='#666666' face='Helvetica,sans-serif'>
                                                                         <span style='font-size:8.5pt;'>
-                                                                            <br>".$config->get('footer2')."
+                                                                            <br>".\_notemail_branding_footer($config->get('footer2'), '')."
                                                                         </span>
                                                                     </font>
                                                                 </span>
